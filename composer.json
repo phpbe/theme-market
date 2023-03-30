@@ -1,0 +1,28 @@
+{
+  "name": "be/theme-market",
+  "type": "library",
+  "description": "集市主题",
+  "keywords": [
+    "Market",
+    "集市",
+    "主题"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "1024i team",
+      "email": "1024i@1024i.com",
+      "homepage": "https://www.1024i.com/team"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Be\\Theme\\Market\\": "src/"
+    }
+  },
+  "require": {
+    "be/be": "*",
+    "be/app-shop": "*",
+    "be/app-monkey": "*"
+  }
+}

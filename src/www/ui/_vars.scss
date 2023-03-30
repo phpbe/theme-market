@@ -1,0 +1,150 @@
+$breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px,
+        x3l: 1680px,
+) !default;
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px,
+        x3l: 1440px,
+) !default;
+
+// 布局分栏数
+$grid-columns: 24 !default;
+
+
+$black: #333 !default;
+$gray: #999 !default;
+$white: #fff !default;
+
+$gray-colors: (
+        "000": #000,
+        "111": #111,
+        "222": #222,
+        "333": #333,
+        "444": #444,
+        "555": #555,
+        "666": #666,
+        "777": #777,
+        "888": #888,
+        "999": #999,
+        "aaa": #aaa,
+        "bbb": #bbb,
+        "ccc": #ccc,
+        "ddd": #ddd,
+        "eee": #eee,
+        "fff": #fff,
+) !default;
+
+
+$red: #c51230 !default;
+$orange: #f90 !default;
+$yellow: #e6d62e !default;
+$green: #67C23A!default;
+$blue: #409EFF !default;
+$purple: #7952b3 !default;
+$pink: #cc6699 !default;
+$brown: #b75555 !default;
+$colors: (
+        "red": $red,
+        "orange": $orange,
+        "yellow": $yellow,
+        "green": $green,
+        "blue": $blue,
+        "purple": $purple,
+        "pink": $pink,
+        "brown": $brown,
+) !default;
+
+// 主色
+$majorColor: #409EFF !default;
+
+// 搭配色
+$minorColor: #333 !default;
+
+// 搭配色
+$fontColor: #333 !default;
+
+// 默认按钮样式
+$btn-color: $fontColor !default;
+$btn-background-color: #fff !default;
+$btn-border-color: #ccc !default;
+
+
+// 理入框
+$input-background-color: #fff !default;
+$input-border-color: #ccc !default;
+$input-focus-border-color: #666 !default;
+
+
+$font-sizes: (
+        50: .5rem,
+        60: .6rem,
+        70: .7rem,
+        75: .75rem,
+        80: .8rem,
+        90: .9rem,
+        100: 1rem,
+        110: 1.1rem,
+        120: 1.2rem,
+        125: 1.25rem,
+        150: 1.5rem,
+        175: 1.75rem,
+        200: 2rem,
+        250: 2.5rem,
+        300: 3rem,
+        400: 4rem
+) !default;
+
+$heights: (
+        50: .5rem,
+        60: .6rem,
+        70: .7rem,
+        75: .75rem,
+        80: .8rem,
+        90: .9rem,
+        100: 1rem,
+        110: 1.1rem,
+        120: 1.2rem,
+        125: 1.25rem,
+        150: 1.5rem,
+        175: 1.75rem,
+        200: 2rem,
+        250: 2.5rem,
+        300: 3rem,
+        400: 4rem
+) !default;
+
+
+$spacings: (
+        10: .1rem,
+        20: .2rem,
+        25: .25rem,
+        30: .3rem,
+        40: .4rem,
+        50: .5rem,
+        60: .6rem,
+        70: .7rem,
+        75: .75rem,
+        80: .8rem,
+        90: .9rem,
+        100: 1rem,
+        110: 1.1rem,
+        120: 1.2rem,
+        125: 1.25rem,
+        150: 1.5rem,
+        175: 1.75rem,
+        200: 2rem,
+        250: 2.5rem,
+        300: 3rem,
+        400: 4rem,
+        auto: auto
+) !default;

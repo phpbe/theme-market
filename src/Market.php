@@ -34,7 +34,6 @@
         echo '}';
 
         echo 'body {';
-        echo 'padding: 0;';
         echo '--major-color: ' . $configTheme->majorColor . ';';
         echo '--minor-color: ' . $configTheme->minorColor . ';';
         echo '--font-color: ' . $configTheme->fontColor . ';';

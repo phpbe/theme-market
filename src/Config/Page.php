@@ -18,7 +18,7 @@ class Page
 
     public array $northSections = [
         [
-            'name' => 'Theme.Market.HeaderBanner',
+            'name' => 'Theme.Market.Banner',
         ],
         [
             'name' => 'Theme.Market.HeaderToolbar',
@@ -64,5 +64,28 @@ class Page
     public string $spacingMobile = '1.5rem';
     public string $spacingTablet = '1.75rem';
     public string $spacingDesktop = '2rem';
+
+
+
+    public function __construct()
+    {
+        $wwwUrl = \Be\Be::getProperty('Theme.Market')->getWwwUrl();
+
+        $this->northSections[0]['config'] = (object)[
+            'enable' => 1,
+            'width' => 'fullWidth',
+            'image' => $wwwUrl . '/images/banner/1.jpg',
+            'height' => 70,
+            'link' => '#',
+            'swing' => 0,
+            'paddingMobile' => '0',
+            'paddingTablet' => '0',
+            'paddingDesktop' => '0',
+            'marginMobile' => '0',
+            'marginTablet' => '0',
+            'marginDesktop' => '0',
+        ];
+
+    }
 
 }

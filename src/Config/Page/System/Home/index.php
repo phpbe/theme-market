@@ -11,6 +11,18 @@ class index
         [
             'name' => 'Theme.Market.Slider',
         ],
+        [
+            'name' => 'Theme.Market.Banner',
+        ],
+        [
+            'name' => 'Theme.Market.AppShopTopSalesProducts',
+        ],
+        [
+            'name' => 'Theme.Market.Banners',
+        ],
+        [
+            'name' => 'Theme.Market.Banner',
+        ],
     ];
 
     /**
@@ -45,5 +57,76 @@ class index
      */
     public string $pageTitle = '';
 
+
+    public function __construct()
+    {
+        $wwwUrl = \Be\Be::getProperty('Theme.Market')->getWwwUrl();
+
+        $this->middleSections[1]['config'] = (object)[
+            'enable' => 1,
+            'width' => 'default',
+            'image' => $wwwUrl . '/images/banner/2.jpg',
+            'height' => 100,
+            'link' => '#',
+            'swing' => 1,
+            'paddingMobile' => '0',
+            'paddingTablet' => '0',
+            'paddingDesktop' => '0',
+            'marginMobile' => '1rem 0 0 0',
+            'marginTablet' => '2rem 0 0 0',
+            'marginDesktop' => '3rem 0 0 0',
+        ];
+
+        $this->middleSections[3]['config'] = (object)[
+            'enable' => 1,
+            'width' => 'default',
+            'link' => '#',
+            'swing' => 1,
+            'paddingMobile' => '0',
+            'paddingTablet' => '0',
+            'paddingDesktop' => '0',
+            'marginMobile' => '1rem 0 0 0',
+            'marginTablet' => '2rem 0 0 0',
+            'marginDesktop' => '3rem 0 0 0',
+            'spacingMobile' => '1rem',
+            'spacingTablet' => '1.5rem',
+            'spacingDesktop' => '2rem',
+            'items' => [
+                [
+                    'name' => 'Banner',
+                    'config' =>  (object)[
+                        'enable' => 1,
+                        'image' => $wwwUrl . '/images/banners/1-1.jpg',
+                        'link' => '#',
+                    ],
+                ],
+                [
+                    'name' => 'Banner',
+                    'config' =>  (object)[
+                        'enable' => 1,
+                        'image' => $wwwUrl . '/images/banners/1-2.jpg',
+                        'link' => '#',
+                    ],
+                ],
+            ],
+        ];
+
+
+        $this->middleSections[4]['config'] = (object)[
+            'enable' => 1,
+            'width' => 'default',
+            'image' => $wwwUrl . '/images/banner/3.jpg',
+            'height' => 160,
+            'link' => '#',
+            'swing' => 1,
+            'paddingMobile' => '0',
+            'paddingTablet' => '0',
+            'paddingDesktop' => '0',
+            'marginMobile' => '1rem 0 0 0',
+            'marginTablet' => '2rem 0 0 0',
+            'marginDesktop' => '3rem 0 0 0',
+        ];
+
+    }
 
 }

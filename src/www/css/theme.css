@@ -22,13 +22,41 @@ a:active, a:hover {
 
 @keyframes ajaxLoading {
     0% {
-        transform: rotate(0deg)
+        transform: rotate(0deg);
     }
 
     100% {
-        transform: rotate(360deg)
+        transform: rotate(360deg);
     }
 }
+
+
+@keyframes swingBanner {
+    17% {
+        transform: translateX(8px);
+    }
+
+    33% {
+        transform: translateX(-6px);
+    }
+
+    50% {
+        transform: translateX(4px);
+    }
+
+    66% {
+        transform: translateX(-2px);
+    }
+
+    83% {
+        transform: translateX(1px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
 
 #ajax-loader {
     position: fixed;

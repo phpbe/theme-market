@@ -18,10 +18,19 @@ class index
             'name' => 'Theme.Market.AppShopTopSalesProducts',
         ],
         [
+            'name' => 'Theme.Market.AppShopCategories',
+        ],
+        [
             'name' => 'Theme.Market.Banners',
         ],
         [
+            'name' => 'Theme.Market.AppShopLatestProducts',
+        ],
+        [
             'name' => 'Theme.Market.Banner',
+        ],
+        [
+            'name' => 'Theme.Market.AppCmsLatestArticles',
         ],
     ];
 
@@ -77,7 +86,7 @@ class index
             'marginDesktop' => '3rem 0 0 0',
         ];
 
-        $this->middleSections[3]['config'] = (object)[
+        $this->middleSections[4]['config'] = (object)[
             'enable' => 1,
             'width' => 'default',
             'link' => '#',
@@ -112,7 +121,7 @@ class index
         ];
 
 
-        $this->middleSections[4]['config'] = (object)[
+        $this->middleSections[6]['config'] = (object)[
             'enable' => 1,
             'width' => 'default',
             'image' => $wwwUrl . '/images/banner/3.jpg',

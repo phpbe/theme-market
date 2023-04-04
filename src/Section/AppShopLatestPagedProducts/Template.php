@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\AppCmsLatestProducts;
+namespace Be\Theme\Market\Section\AppShopLatestPagedProducts;
 
 use Be\Be;
 use Be\Theme\Section;

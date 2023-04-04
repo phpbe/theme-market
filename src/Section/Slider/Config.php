@@ -73,7 +73,7 @@ class Config
      *     driver = "FormItemInputNumberInt",
      *     ui="return ['form-item' => ['v-show' => 'formData.navigation === 1']];")
      */
-    public int $navigationSize = 30;
+    public int $navigationSize = 25;
 
     /**
      * @BeConfigItem("内边距 （手机端）",
@@ -152,6 +152,13 @@ class Config
                 'config' => (object)[
                     'enable' => 1,
                     'image' => $wwwUrl . '/images/slider/2.jpg',
+                ],
+            ],
+            [
+                'name' => 'Image',
+                'config' => (object)[
+                    'enable' => 1,
+                    'image' => $wwwUrl . '/images/slider/3.jpg',
                 ],
             ],
         ];

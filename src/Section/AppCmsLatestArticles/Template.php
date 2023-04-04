@@ -16,26 +16,13 @@ class Template extends Section
             return;
         }
 
-        $request = Be::getRequest();
-        $response = Be::getResponse();
-
-        $page = $request->get('page', 1);
-        if ($page > 11) {
-            $page = 11;
-        }
-        $params = [
-            'orderBy' => 'publish_time',
-            'orderByDir' => 'desc',
-            'page' => $page,
-        ];
-
-        if ($this->config->pageSize > 0) {
-            $params['pageSize'] = $this->config->pageSize;
+        $articles = Be::getService('App.Cms.Article')->getLatestArticles($this->config->quantity);
+        if (count($articles) === 0) {
+            return;
         }
 
-        $result = Be::getService('App.Cms.Article')->search('', $params);
-
-        echo Be::getService('Theme.Market.CmsSection')->makePagedArticlesSection($this, 'app-cms-latest-articles', $result);
+        $defaultMoreLink = beUrl('Cms.Article.latest');
+        echo Be::getService('Theme.Market.CmsSection')->makeArticlesSection($this, 'app-cms-latest-articles', $defaultMoreLink);
     }
 
 }

@@ -83,7 +83,6 @@ class Config
      */
     public string $marginDesktop = '0';
 
-
     /**
      * @BeConfigItem("间距（手机端）",
      *     driver = "FormItemInput"

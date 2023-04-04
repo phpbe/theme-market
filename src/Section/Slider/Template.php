@@ -18,10 +18,10 @@ class Template extends Section
 
         if ($this->config->pagination) {
             echo '.swiper-pagination .swiper-pagination-bullet {';
-            echo 'width: 12px;';
-            echo 'height: 12px;';
+            echo 'width: 10px;';
+            echo 'height: 10px;';
             echo 'margin: 0 20px;';
-            echo 'border-radius: 10px;';
+            echo 'border-radius: 5px;';
             echo 'background-color: #fff;';
             echo 'opacity: 1;';
             echo 'transition: all .3s;';
@@ -34,26 +34,10 @@ class Template extends Section
             echo '}';
         }
 
-
         if ($this->config->navigation) {
-            echo '.swiper-button-prev, ';
-            echo '.swiper-button-next {';
-            echo 'color: #fff;';
-            echo 'width: ' . ($this->config->navigationSize / 44 * 27) . 'px;';
-            echo 'height: ' . $this->config->navigationSize . 'px;';
-            echo 'margin-top: -' . ($this->config->navigationSize / 2) . 'px;';
-            echo 'opacity: .1;';
-            echo 'transition: opacity 0.3s ease;';
-            echo '}';
-
-            echo '.swiper-container:hover .swiper-button-prev, ';
-            echo '.swiper-container:hover .swiper-button-next {';
-            echo 'opacity: 1;';
-            echo '}';
-
-            echo '.swiper-button-prev:after, ';
-            echo '.swiper-button-next:after {';
-            echo 'font-size: ' . $this->config->navigationSize . ';';
+            echo '#' . $this->id . ' .slider {';
+            echo '--swiper-navigation-size: '.$this->config->navigationSize.'px;';
+            echo '--swiper-navigation-color: #fff;';
             echo '}';
         }
 
@@ -189,7 +173,7 @@ class Template extends Section
                     echo '<div class="swiper-slide">';
                     switch ($item['name']) {
                         case 'Image':
-                            echo '<div class="slider-image" style="background-image: url('.$itemConfig->image.')">';
+                            echo '<div class="slider-image" style="background-image: url(' . $itemConfig->image . ')">';
                             echo '</div>';
                             break;
                         case 'ImageWithTextOverlay':

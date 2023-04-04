@@ -11,9 +11,7 @@ class ShopSection
 
     private function makeProductsSectionPublicCss(object $section, string $class)
     {
-        $css = Be::getService('App.Shop.Ui')->getProductGlobalCss();
-
-        $css .= $section->getCssBackgroundColor($class);
+        $css = $section->getCssBackgroundColor($class);
         $css .= $section->getCssPadding($class);
         $css .= $section->getCssMargin($class);
 
@@ -112,18 +110,65 @@ class ShopSection
         $css .= '}';
 
 
+        $css .= '#' . $section->id . ' .' . $class . '-product-image {';
+        $css .= 'position: relative;';
+        $css .= '}';
+
+
+        $css .= '#' . $section->id . ' .' . $class . '-product-image img {';
+        $css .= 'width: 100%;';
+        $css .= 'transition: all .3s;';
+        $css .= '}';
+
+        $css .= '#' . $section->id . ' .' . $class . '-product-image-actions {';
+        $css .= 'position: absolute;';
+        $css .= 'top: 50%;';
+        $css .= 'left: 0;';
+        $css .= 'right: 0;';
+        //$css .= 'display: none;';
+        $css .= 'margin-top: -1rem;';
+        $css .= '}';
+
+        $css .= '#' . $section->id . ' .' . $class . '-product-image-actions a {';
+        $css .= 'display: inline-block;';
+        $css .= 'background-color: var(--font-color);';
+        $css .= 'color: #fff;';
+        $css .= 'border-radius: 50%;';
+        $css .= 'font-size: 1rem;';
+        $css .= 'line-height: 1rem;';
+        $css .= 'padding: .5rem;';
+        $css .= 'margin: 0 .25rem;';
+        //$css .= 'transition: all .3s;';
+        $css .= 'transform: translateY(-40px);';
+        $css .= 'opacity: 0;';
+        $css .= '}';
+
+
+
+
+        $css .= '#' . $section->id . ' .' . $class . '-product-image-actions a:hover {';
+        $css .= 'background-color: var(--major-color);';
+        $css .= '}';
+
+        $css .= '#' . $section->id . ' .' . $class . '-product:hover .' . $class . '-product-image img {';
+        $css .= 'opacity: .5;';
+        $css .= '}';
+
+        $css .= '#' . $section->id . ' .' . $class . '-product:hover .' . $class . '-product-image-actions {';
+        //$css .= 'display: block;';
+        $css .= '}';
+
+        $css .= '#' . $section->id . ' .' . $class . '-product:hover .' . $class . '-product-image-actions a {';
+        $css .= 'transform: translateY(0);';
+        $css .= 'opacity: 1;';
+        $css .= '}';
+
         $css .= '#' . $section->id . ' .' . $class . '-product:hover .be-btn {';
         $css .= 'background-color: var(--major-color);';
         $css .= 'border-color: var(--major-color);';
         $css .= 'color: #fff;';
         $css .= '}';
 
-        $css .= '#' . $section->id . ' .' . $class . '-product-image {';
-        $css .= '}';
-
-        $css .= '#' . $section->id . ' .' . $class . '-product-image img {';
-        $css .= 'width: 100%;';
-        $css .= '}';
 
         return $css;
     }
@@ -179,6 +224,17 @@ class ShopSection
             $html .= '<img src="' . $defaultImage->url . '" alt="' . htmlspecialchars($product->name) . '">';
 
             $html .= '</a>';
+
+            $html .= '<div class="be-ta-center ' . $class . '-product-image-actions">';
+            $html .= '<a href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '" style="transition: all .3s;">';
+            $html .= '<i class="bi-suit-heart-fill"></i>';
+            $html .= '</a>';
+
+            $html .= '<a href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '" style="transition: all .4s;">';
+            $html .= '<i class="bi-eye-fill"></i>';
+            $html .= '</a>';
+            $html .= '</div>';
+
             $html .= '</div>';
 
             $html .= '<div class="be-mt-100 be-ta-center be-c-major">';
@@ -293,18 +349,12 @@ class ShopSection
         }
 
         if ($section->config->title !== '') {
-            $html .= $section->page->tag0('be-section-title', true);
-
             $html .= '<div class="' . $class . '-title">';
             $html .= '<h3 class="be-h3">' . $section->config->title . '</h3>';
             $html .= '</div>';
-
-            $html .= $section->page->tag1('be-section-title', true);
         }
 
-        $html .= $section->page->tag0('be-section-content', true);
         $html .= $this->makeProductsSectionPublicHtml($section, $class, $products);
-        $html .= $section->page->tag1('be-section-content', true);
 
         if ($section->position === 'middle' && $section->config->width === 'default') {
             $html .= '</div>';
@@ -336,15 +386,10 @@ class ShopSection
         $html .= $this->makeProductsSectionPublicCss($section, $class);
         $html .= '</style>';
 
-        $isMobile = \Be\Be::getRequest()->isMobile();
-
         $html .= '<div class="' . $class . '">';
-
         if ($section->position === 'middle' && $section->config->width === 'default') {
             $html .= '<div class="be-container">';
         }
-
-        $html .= $section->page->tag0('be-section-content', true);
 
         $html .= $this->makeProductsSectionPublicHtml($section, $class, $result['rows']);
 
@@ -419,10 +464,7 @@ class ShopSection
             $html .= '</li>';
             $html .= '</ul>';
             $html .= '</nav>';
-
         }
-
-        $html .= $section->page->tag1('be-section-content', true);
 
         if ($section->position === 'middle' && $section->config->width === 'default') {
             $html .= '</div>';
@@ -470,12 +512,9 @@ class ShopSection
         }
 
         if (isset($section->config->title) && $section->config->title !== '') {
-            $html .= $section->page->tag0('be-section-title', true);
             $html .= $section->config->title;
-            $html .= $section->page->tag1('be-section-title', true);
         }
 
-        $html .= $section->page->tag0('be-section-content', true);
 
         $isMobile = \Be\Be::getRequest()->isMobile();
         foreach ($products as $article) {
@@ -512,12 +551,9 @@ class ShopSection
             }
         }
 
-        $html .= $section->page->tag1('be-section-content', true);
-
         if ($section->position === 'middle' && $section->config->width === 'default') {
             $html .= '</div>';
         }
-
         $html .= '</div>';
 
         return $html;

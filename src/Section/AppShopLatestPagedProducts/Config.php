@@ -1,5 +1,5 @@
 <?php
-namespace Be\Theme\Market\Section\AppCmsLatestProducts;
+namespace Be\Theme\Market\Section\AppShopLatestPagedProducts;
 
 /**
  * @BeConfig("最新文章", icon="bi-star")

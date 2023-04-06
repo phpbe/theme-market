@@ -1,23 +1,18 @@
 <?php
-namespace Be\Theme\Market\Section\AppCmsHome;
+
+namespace Be\Theme\Market\Section\AppCmsCategoryArticles;
 
 /**
- * @BeConfig("最新文章", icon="bi-star")
+ * @BeConfig("分类文章", icon="bi-home")
  */
 class Config
 {
+
     /**
-     * @BeConfigItem("最新",
+     * @BeConfigItem("是否启用",
      *     driver = "FormItemSwitch")
      */
     public int $enable = 1;
-
-    /**
-     * @BeConfigItem("背景颜色",
-     *     driver = "FormItemColorPicker"
-     * )
-     */
-    public string $backgroundColor = '';
 
     /**
      * @BeConfigItem("分页太小?",,
@@ -75,5 +70,7 @@ class Config
      * )
      */
     public string $marginDesktop = '0';
+
+
 
 }

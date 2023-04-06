@@ -1,35 +1,35 @@
 <?php
-namespace Be\Theme\Market\Section\AppCmsHome;
+
+namespace Be\Theme\Market\Section\AppCmsSideSearchForm;
 
 /**
- * @BeConfig("最新文章", icon="bi-star")
+ * @BeConfig("搜索表单", icon="bi-search")
  */
 class Config
 {
+
     /**
-     * @BeConfigItem("最新",
+     * @BeConfigItem("是否启用",
      *     driver = "FormItemSwitch")
      */
     public int $enable = 1;
 
     /**
+     * @BeConfigItem("标题",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $title = 'Search';
+
+    /**
      * @BeConfigItem("背景颜色",
-     *     driver = "FormItemColorPicker"
+     *     driver="FormItemColorPicker"
      * )
      */
-    public string $backgroundColor = '';
+    public string $backgroundColor = '#FFFFFF';
 
     /**
-     * @BeConfigItem("分页太小?",,
-     *     description = "分页为0时取系统配置",
-     *     driver = "FormItemSlider",
-     *     ui="return [':min' => 0, ':max' => 100];"
-     * )
-     */
-    public int $pageSize = 10;
-
-    /**
-     * @BeConfigItem("内边距 （手机端）",
+     * @BeConfigItem("内边距（手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS padding 语法）"
      * )
@@ -37,7 +37,7 @@ class Config
     public string $paddingMobile = '0';
 
     /**
-     * @BeConfigItem("内边距 （平板端）",
+     * @BeConfigItem("内边距（平板端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS padding 语法）"
      * )
@@ -45,7 +45,7 @@ class Config
     public string $paddingTablet = '0';
 
     /**
-     * @BeConfigItem("内边距 （电脑端）",
+     * @BeConfigItem("内边距（电脑端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS padding 语法）"
      * )
@@ -53,7 +53,7 @@ class Config
     public string $paddingDesktop = '0';
 
     /**
-     * @BeConfigItem("外边距 （手机端）",
+     * @BeConfigItem("外边距（手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
@@ -61,7 +61,7 @@ class Config
     public string $marginMobile = '0';
 
     /**
-     * @BeConfigItem("外边距 （平板端）",
+     * @BeConfigItem("外边距（平板端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
@@ -69,11 +69,12 @@ class Config
     public string $marginTablet = '0';
 
     /**
-     * @BeConfigItem("外边距 （电脑端）",
+     * @BeConfigItem("外边距（电脑端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
      */
     public string $marginDesktop = '0';
+
 
 }

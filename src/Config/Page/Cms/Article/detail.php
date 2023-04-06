@@ -7,31 +7,26 @@ use Be\Be;
 class detail
 {
 
-    public int $west = 0;
-    public int $center = 66;
-    public int $east = 34;
 
-    public array $northSections = [
+    public int $west = 25;
+    public int $center = 75;
+    public int $east = 0;
+
+    public array $westSections = [
         [
-            'name' => 'Theme.Market.Header',
+            'name' => 'Theme.Market.AppCmsSideSearchForm',
         ],
         [
-            'name' => 'Theme.Market.AppCmsArticleDetailHeader',
+            'name' => 'Theme.Market.AppCmsSideCategories',
+        ],
+        [
+            'name' => 'Theme.Market.AppCmsSideTopTags',
         ],
     ];
 
     public array $centerSections = [
         [
             'name' => 'Theme.Market.AppCmsArticleDetail',
-        ],
-    ];
-
-    public array $eastSections = [
-        [
-            'name' => 'Theme.Market.AppCmsLatest',
-        ],
-        [
-            'name' => 'Theme.Market.AppCmsTags',
         ],
     ];
 

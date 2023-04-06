@@ -8,6 +8,269 @@ use Be\Be;
 class ShopSection
 {
 
+    /**
+     * 生成商品列表部件
+     *
+     * @param object $section
+     * @param string $class
+     * @param array $products
+     * @param string $defaultMoreLink
+     * @return string
+     */
+    public function makeProductsSection(object $section, string $class, array $products, string $defaultMoreLink = null): string
+    {
+        $count = count($products);
+        if ($count === 0) {
+            return '';
+        }
+
+        $html = '';
+        $html .= '<style type="text/css">';
+        $html .= $this->makeProductsSectionPublicCss($section, $class);
+
+        $html .= '#' . $section->id . ' .' . $class . '-title {';
+        $html .= 'margin-bottom: 2rem;';
+        $html .= '}';
+
+        $html .= '#' . $section->id . ' .' . $class . '-title h3 {';
+        $html .= 'border-bottom: 2px solid #eee;';
+        $html .= 'text-align: center;';
+        $html .= 'position: relative;';
+        $html .= 'padding-bottom: 1rem;';
+        $html .= '}';
+
+        $html .= '#' . $section->id . ' .' . $class . '-title h3:before {';
+        $html .= 'position: absolute;';
+        $html .= 'content: "";';
+        $html .= 'left: 50%;';
+        $html .= 'bottom: -2px;';
+        $html .= 'width: 100px;';
+        $html .= 'height: 2px;';
+        $html .= 'margin-left: -50px;';
+        $html .= 'background-color: var(--major-color);';
+        $html .= '}';
+
+        $html .= '</style>';
+
+
+        $html .= '<div class="' . $class . '">';
+
+        if ($section->position === 'middle' && $section->config->width === 'default') {
+            $html .= '<div class="be-container">';
+        }
+
+        if ($section->config->title !== '') {
+            $html .= '<div class="' . $class . '-title">';
+            $html .= '<h3 class="be-h3">' . $section->config->title . '</h3>';
+            $html .= '</div>';
+        }
+
+        $html .= $this->makeProductsSectionPublicHtml($section, $class, $products);
+
+        if ($section->position === 'middle' && $section->config->width === 'default') {
+            $html .= '</div>';
+        }
+
+        $html .= '</div>';
+
+        return $html;
+    }
+
+
+    /**
+     * 生成分页商品列表部件
+     *
+     * @param object $section
+     * @param string $class
+     * @param array $result
+     * @param string $paginationUrl
+     * @return string
+     */
+    public function makePagedProductsSection(object $section, string $class, array $result, string $paginationUrl = null): string
+    {
+        if ($result['total'] === 0) {
+            return '';
+        }
+
+        $html = '';
+        $html .= '<style type="text/css">';
+        $html .= $this->makeProductsSectionPublicCss($section, $class);
+        $html .= '</style>';
+
+        $html .= '<div class="' . $class . '">';
+        if ($section->position === 'middle' && $section->config->width === 'default') {
+            $html .= '<div class="be-container">';
+        }
+
+        $html .= $this->makeProductsSectionPublicHtml($section, $class, $result['rows']);
+
+        $total = $result['total'];
+        $pageSize = $result['pageSize'];
+        $pages = ceil($total / $pageSize);
+        if ($pages > 1) {
+            $page = $result['page'];
+            if ($page > $pages) $page = $pages;
+
+            $paginationUrl .= strpos($paginationUrl, '?') === false ? '?' : '&';
+
+            $html .= '<nav class="be-mt-300">';
+            $html .= '<ul class="be-pagination" style="justify-content: center;">';
+            $html .= '<li>';
+            if ($page > 1) {
+                $url = $paginationUrl;
+                $url .= http_build_query(['page' => ($page - 1)]);
+                $html .= '<a href="' . $url . '">Preview</a>';
+            } else {
+                $html .= '<span>Preview</span>';
+            }
+            $html .= '</li>';
+
+            $from = null;
+            $to = null;
+            if ($pages < 9) {
+                $from = 1;
+                $to = $pages;
+            } else {
+                $from = $page - 4;
+                if ($from < 1) {
+                    $from = 1;
+                }
+
+                $to = $from + 8;
+                if ($to > $pages) {
+                    $to = $pages;
+                }
+            }
+
+            if ($from > 1) {
+                $html .= '<li><span>...</span></li>';
+            }
+
+            for ($i = $from; $i <= $to; $i++) {
+                if ($i == $page) {
+                    $html .= '<li class="active">';
+                    $html .= '<span>' . $i . '</span>';
+                    $html .= '</li>';
+                } else {
+                    $url = $paginationUrl;
+                    $url .= http_build_query(['page' => $i]);
+                    $html .= '<li>';
+                    $html .= '<a href="' . $url . '">' . $i . '</a>';
+                    $html .= '</li>';
+                }
+            }
+
+            if ($to < $pages) {
+                $html .= '<li><span>...</span></li>';
+            }
+
+            $html .= '<li>';
+            if ($page < $pages) {
+                $url = $paginationUrl;
+                $url .= http_build_query(['page' => ($page + 1)]);
+                $html .= '<a href="' . $url . '">Next</a>';
+            } else {
+                $html .= '<span>Next</span>';
+            }
+            $html .= '</li>';
+            $html .= '</ul>';
+            $html .= '</nav>';
+        }
+
+        if ($section->position === 'middle' && $section->config->width === 'default') {
+            $html .= '</div>';
+        }
+
+        $html .= '</div>';
+
+        return $html;
+    }
+
+
+    /**
+     * 生成商品列表部件
+     *
+     * @param object $section
+     * @param string $class
+     * @param array $products
+     * @param string $defaultMoreLink
+     * @return string
+     */
+    public function makeSideProductsSection(object $section, string $class, array $products, string $defaultMoreLink = null): string
+    {
+        $html = '';
+        $html .= '<style type="text/css">';
+        $html .= $section->getCssBackgroundColor($class);
+        $html .= $section->getCssPadding($class);
+        $html .= $section->getCssMargin($class);
+
+        $html .= '#' . $section->id . ' .' . $class . ' {';
+        //$html .= 'box-shadow: 0 0 10px var(--font-color-9);';
+        $html .= 'box-shadow: 0 0 10px #eaf0f6;';
+        $html .= 'transition: all 0.3s ease;';
+        $html .= '}';
+
+        $html .= '#' . $section->id . ' .' . $class . ':hover {';
+        //$html .= 'box-shadow: 0 0 15px var(--font-color-8);';
+        $html .= 'box-shadow: 0 0 15px #dae0e6;';
+        $html .= '}';
+
+        $html .= '</style>';
+
+        $html .= '<div class="' . $class . '">';
+        if ($section->position === 'middle' && $section->config->width === 'default') {
+            $html .= '<div class="be-container">';
+        }
+
+        if (isset($section->config->title) && $section->config->title !== '') {
+            $html .= $section->config->title;
+        }
+
+
+        $isMobile = \Be\Be::getRequest()->isMobile();
+        foreach ($products as $article) {
+            $html .= '<div class="be-py-20">';
+            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Cms.Article.detail', ['id' => $article->id]) . '" title="' . $article->title . '"';
+            if (!$isMobile) {
+                $html .= ' target="_blank"';
+            }
+            $html .= '>';
+            $html .= $article->title;
+            $html .= '</a>';
+            $html .= '</div>';
+        }
+
+        if (isset($section->config->more) && $section->config->more !== '') {
+
+            $moreLink = null;
+            if (isset($section->config->moreLink) && $section->config->moreLink !== '') {
+                $moreLink = $section->config->moreLink;
+            }
+
+            if ($moreLink === null && $defaultMoreLink !== null) {
+                $moreLink = $defaultMoreLink;
+            }
+
+            if ($moreLink !== null) {
+                $html .= '<div class="be-mt-100 be-bt-eee be-pt-100 be-ta-right">';
+                $html .= '<a href="' . $moreLink . '"';
+                if (!$isMobile) {
+                    $html .= ' target="_blank"';
+                }
+                $html .= '>' . $section->config->more . '</a>';
+                $html .= '</div>';
+            }
+        }
+
+        if ($section->position === 'middle' && $section->config->width === 'default') {
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+
+        return $html;
+    }
+
+
 
     private function makeProductsSectionPublicCss(object $section, string $class)
     {
@@ -295,269 +558,5 @@ class ShopSection
 
         return $html;
     }
-
-
-    /**
-     * 生成商品列表部件
-     *
-     * @param object $section
-     * @param string $class
-     * @param array $products
-     * @param string $defaultMoreLink
-     * @return string
-     */
-    public function makeProductsSection(object $section, string $class, array $products, string $defaultMoreLink = null): string
-    {
-        $count = count($products);
-        if ($count === 0) {
-            return '';
-        }
-
-        $html = '';
-        $html .= '<style type="text/css">';
-        $html .= $this->makeProductsSectionPublicCss($section, $class);
-
-        $html .= '#' . $section->id . ' .' . $class . '-title {';
-        $html .= 'margin-bottom: 2rem;';
-        $html .= '}';
-
-        $html .= '#' . $section->id . ' .' . $class . '-title h3 {';
-        $html .= 'border-bottom: 2px solid #eee;';
-        $html .= 'text-align: center;';
-        $html .= 'position: relative;';
-        $html .= 'padding-bottom: 1rem;';
-        $html .= '}';
-
-        $html .= '#' . $section->id . ' .' . $class . '-title h3:before {';
-        $html .= 'position: absolute;';
-        $html .= 'content: "";';
-        $html .= 'left: 50%;';
-        $html .= 'bottom: -2px;';
-        $html .= 'width: 100px;';
-        $html .= 'height: 2px;';
-        $html .= 'margin-left: -50px;';
-        $html .= 'background-color: var(--major-color);';
-        $html .= '}';
-
-        $html .= '</style>';
-
-
-        $html .= '<div class="' . $class . '">';
-
-        if ($section->position === 'middle' && $section->config->width === 'default') {
-            $html .= '<div class="be-container">';
-        }
-
-        if ($section->config->title !== '') {
-            $html .= '<div class="' . $class . '-title">';
-            $html .= '<h3 class="be-h3">' . $section->config->title . '</h3>';
-            $html .= '</div>';
-        }
-
-        $html .= $this->makeProductsSectionPublicHtml($section, $class, $products);
-
-        if ($section->position === 'middle' && $section->config->width === 'default') {
-            $html .= '</div>';
-        }
-
-        $html .= '</div>';
-
-        return $html;
-    }
-
-
-    /**
-     * 生成分页商品列表部件
-     *
-     * @param object $section
-     * @param string $class
-     * @param array $result
-     * @param string $paginationUrl
-     * @return string
-     */
-    public function makePagedProductsSection(object $section, string $class, array $result, string $paginationUrl = null): string
-    {
-        if ($result['total'] === 0) {
-            return '';
-        }
-
-        $html = '';
-        $html .= '<style type="text/css">';
-        $html .= $this->makeProductsSectionPublicCss($section, $class);
-        $html .= '</style>';
-
-        $html .= '<div class="' . $class . '">';
-        if ($section->position === 'middle' && $section->config->width === 'default') {
-            $html .= '<div class="be-container">';
-        }
-
-        $html .= $this->makeProductsSectionPublicHtml($section, $class, $result['rows']);
-
-        $total = $result['total'];
-        $pageSize = $result['pageSize'];
-        $pages = ceil($total / $pageSize);
-        if ($pages > 1) {
-            $page = $result['page'];
-            if ($page > $pages) $page = $pages;
-
-            $paginationUrl .= strpos($paginationUrl, '?') === false ? '?' : '&';
-
-            $html .= '<nav class="be-mt-300">';
-            $html .= '<ul class="be-pagination" style="justify-content: center;">';
-            $html .= '<li>';
-            if ($page > 1) {
-                $url = $paginationUrl;
-                $url .= http_build_query(['page' => ($page - 1)]);
-                $html .= '<a href="' . $url . '">Preview</a>';
-            } else {
-                $html .= '<span>Preview</span>';
-            }
-            $html .= '</li>';
-
-            $from = null;
-            $to = null;
-            if ($pages < 9) {
-                $from = 1;
-                $to = $pages;
-            } else {
-                $from = $page - 4;
-                if ($from < 1) {
-                    $from = 1;
-                }
-
-                $to = $from + 8;
-                if ($to > $pages) {
-                    $to = $pages;
-                }
-            }
-
-            if ($from > 1) {
-                $html .= '<li><span>...</span></li>';
-            }
-
-            for ($i = $from; $i <= $to; $i++) {
-                if ($i == $page) {
-                    $html .= '<li class="active">';
-                    $html .= '<span>' . $i . '</span>';
-                    $html .= '</li>';
-                } else {
-                    $url = $paginationUrl;
-                    $url .= http_build_query(['page' => $i]);
-                    $html .= '<li>';
-                    $html .= '<a href="' . $url . '">' . $i . '</a>';
-                    $html .= '</li>';
-                }
-            }
-
-            if ($to < $pages) {
-                $html .= '<li><span>...</span></li>';
-            }
-
-            $html .= '<li>';
-            if ($page < $pages) {
-                $url = $paginationUrl;
-                $url .= http_build_query(['page' => ($page + 1)]);
-                $html .= '<a href="' . $url . '">Next</a>';
-            } else {
-                $html .= '<span>Next</span>';
-            }
-            $html .= '</li>';
-            $html .= '</ul>';
-            $html .= '</nav>';
-        }
-
-        if ($section->position === 'middle' && $section->config->width === 'default') {
-            $html .= '</div>';
-        }
-
-        $html .= '</div>';
-
-        return $html;
-    }
-
-
-    /**
-     * 生成商品列表部件
-     *
-     * @param object $section
-     * @param string $class
-     * @param array $products
-     * @param string $defaultMoreLink
-     * @return string
-     */
-    public function makeSideProductsSection(object $section, string $class, array $products, string $defaultMoreLink = null): string
-    {
-        $html = '';
-        $html .= '<style type="text/css">';
-        $html .= $section->getCssBackgroundColor($class);
-        $html .= $section->getCssPadding($class);
-        $html .= $section->getCssMargin($class);
-
-        $html .= '#' . $section->id . ' .' . $class . ' {';
-        //$html .= 'box-shadow: 0 0 10px var(--font-color-9);';
-        $html .= 'box-shadow: 0 0 10px #eaf0f6;';
-        $html .= 'transition: all 0.3s ease;';
-        $html .= '}';
-
-        $html .= '#' . $section->id . ' .' . $class . ':hover {';
-        //$html .= 'box-shadow: 0 0 15px var(--font-color-8);';
-        $html .= 'box-shadow: 0 0 15px #dae0e6;';
-        $html .= '}';
-
-        $html .= '</style>';
-
-        $html .= '<div class="' . $class . '">';
-        if ($section->position === 'middle' && $section->config->width === 'default') {
-            $html .= '<div class="be-container">';
-        }
-
-        if (isset($section->config->title) && $section->config->title !== '') {
-            $html .= $section->config->title;
-        }
-
-
-        $isMobile = \Be\Be::getRequest()->isMobile();
-        foreach ($products as $article) {
-            $html .= '<div class="be-py-20">';
-            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Cms.Article.detail', ['id' => $article->id]) . '" title="' . $article->title . '"';
-            if (!$isMobile) {
-                $html .= ' target="_blank"';
-            }
-            $html .= '>';
-            $html .= $article->title;
-            $html .= '</a>';
-            $html .= '</div>';
-        }
-
-        if (isset($section->config->more) && $section->config->more !== '') {
-
-            $moreLink = null;
-            if (isset($section->config->moreLink) && $section->config->moreLink !== '') {
-                $moreLink = $section->config->moreLink;
-            }
-
-            if ($moreLink === null && $defaultMoreLink !== null) {
-                $moreLink = $defaultMoreLink;
-            }
-
-            if ($moreLink !== null) {
-                $html .= '<div class="be-mt-100 be-bt-eee be-pt-100 be-ta-right">';
-                $html .= '<a href="' . $moreLink . '"';
-                if (!$isMobile) {
-                    $html .= ' target="_blank"';
-                }
-                $html .= '>' . $section->config->more . '</a>';
-                $html .= '</div>';
-            }
-        }
-
-        if ($section->position === 'middle' && $section->config->width === 'default') {
-            $html .= '</div>';
-        }
-        $html .= '</div>';
-
-        return $html;
-    }
-
 
 }

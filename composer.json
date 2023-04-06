@@ -23,7 +23,6 @@
   "require": {
     "be/be": "*",
     "be/app-shop": "*",
-    "be/app-cms": "*",
-    "be/app-monkey": "*"
+    "be/app-cms": "dev-master"
   }
 }

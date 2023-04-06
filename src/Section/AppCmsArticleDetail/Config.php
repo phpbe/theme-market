@@ -1,8 +1,9 @@
 <?php
-namespace Be\Theme\Market\Section\AppCmsHome;
+
+namespace Be\Theme\Market\Section\AppCmsArticleDetail;
 
 /**
- * @BeConfig("最新文章", icon="bi-star")
+ * @BeConfig("文章详情", icon="bi-search")
  */
 class Config
 {
@@ -11,22 +12,6 @@ class Config
      *     driver = "FormItemSwitch")
      */
     public int $enable = 1;
-
-    /**
-     * @BeConfigItem("背景颜色",
-     *     driver = "FormItemColorPicker"
-     * )
-     */
-    public string $backgroundColor = '';
-
-    /**
-     * @BeConfigItem("分页太小?",,
-     *     description = "分页为0时取系统配置",
-     *     driver = "FormItemSlider",
-     *     ui="return [':min' => 0, ':max' => 100];"
-     * )
-     */
-    public int $pageSize = 10;
 
     /**
      * @BeConfigItem("内边距 （手机端）",
@@ -75,5 +60,6 @@ class Config
      * )
      */
     public string $marginDesktop = '0';
+
 
 }

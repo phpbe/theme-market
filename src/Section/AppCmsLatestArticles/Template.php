@@ -22,7 +22,7 @@ class Template extends Section
         }
 
         $defaultMoreLink = beUrl('Cms.Article.latest');
-        echo Be::getService('Theme.Market.CmsSection')->makeArticlesSection($this, 'app-cms-latest-articles', $defaultMoreLink);
+        echo Be::getService('Theme.Market.CmsSection')->makeArticlesSection($this, 'app-cms-latest-articles', $articles, $defaultMoreLink);
     }
 
 }

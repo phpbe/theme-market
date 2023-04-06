@@ -19,10 +19,6 @@ class Template extends Section
         $request = Be::getRequest();
 
         $page = $request->get('page', 1);
-        if ($page > 11) {
-            $page = 11;
-        }
-
         $params = [
             'isPushHome' => 1,
             'orderBy' => ['is_on_top', 'publish_time'],

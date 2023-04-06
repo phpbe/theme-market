@@ -13,6 +13,15 @@ class Config
     public int $enable = 1;
 
     /**
+     * @BeConfigItem("宽度",
+     *     description="位于middle时有效",
+     *     driver="FormItemSelect",
+     *     keyValues = "return ['default' => '默认', 'fullWidth' => '全屏'];"
+     * )
+     */
+    public string $width = 'default';
+
+    /**
      * @BeConfigItem("背景颜色",
      *     driver = "FormItemColorPicker"
      * )
@@ -24,7 +33,7 @@ class Config
      *     driver = "FormItemInput"
      * )
      */
-    public string $title = '';
+    public string $title = 'Latest From Blogs';
 
     /**
      * @BeConfigItem("展示多少个商品?",
@@ -32,7 +41,7 @@ class Config
      *     ui="return [':min' => 1, ':max' => 100];"
      * )
      */
-    public $quantity = 5;
+    public $quantity = 4;
 
     /**
      * @BeConfigItem("内边距 （手机端）",

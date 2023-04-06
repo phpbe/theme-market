@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\AppCmsLatestPagedArticles;
+namespace Be\Theme\Market\Section\AppCmsCategoryArticles;
 
 use Be\Be;
 use Be\Theme\Section;
@@ -17,15 +17,11 @@ class Template extends Section
         }
 
         $request = Be::getRequest();
-        $response = Be::getResponse();
-
         $page = $request->get('page', 1);
-        if ($page > 11) {
-            $page = 11;
-        }
         $params = [
-            'orderBy' => 'publish_time',
-            'orderByDir' => 'desc',
+            'categoryId' => $this->page->category->id,
+            'orderBy' => ['is_on_top', 'publish_time'],
+            'orderByDir' => ['desc', 'desc'],
             'page' => $page,
         ];
 
@@ -35,8 +31,7 @@ class Template extends Section
 
         $result = Be::getService('App.Cms.Article')->search('', $params);
 
-        echo Be::getService('Theme.Market.CmsSection')->makePagedArticlesSection($this, 'app-cms-latest-paged-articles', $result);
+        echo Be::getService('Theme.Market.CmsSection')->makePagedArticlesSection($this, 'app-cms-category-articles', $result);
     }
-
 }
 

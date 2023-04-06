@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\AppShopTopSalesProducts;
+namespace Be\Theme\Market\Section\AppShopSideTopSalesProducts;
 
 use Be\Be;
 use Be\Theme\Section;
@@ -18,11 +18,11 @@ class Template extends Section
 
         $products = Be::getService('App.Shop.Product')->getTopSalesProducts($this->config->quantity);
         if (count($products) === 0) {
-            return;
+            $products = Be::getService('App.Shop.Product')->getSampleProducts($this->config->quantity);
         }
 
         $defaultMoreLink = beUrl('Shop.Product.topSales');
-        echo Be::getService('Theme.Market.ShopSection')->makeProductsSection($this, 'app-shop-top-sales-products', $products, $defaultMoreLink);
+        echo Be::getService('Theme.Market.ShopSection')->makeSideProductsSection($this, 'app-shop-side-top-sales-products', $products, $defaultMoreLink);
     }
 
 }

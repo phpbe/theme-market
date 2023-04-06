@@ -1,9 +1,8 @@
 <?php
 
-namespace Be\Theme\Market\Config\Page\Cms\Home;
+namespace Be\Theme\Market\Config\Page\Shop\Product;
 
-
-class index
+class latest
 {
 
     public int $west = 25;
@@ -12,22 +11,18 @@ class index
 
     public array $westSections = [
         [
-            'name' => 'Theme.Market.AppCmsSideSearchForm',
+            'name' => 'Theme.Market.AppShopSideCategories',
         ],
         [
-            'name' => 'Theme.Market.AppCmsSideCategories',
-        ],
-        [
-            'name' => 'Theme.Market.AppCmsSideTopTags',
+            'name' => 'Theme.Market.AppShopSideTopSalesProducts',
         ],
     ];
 
     public array $centerSections = [
         [
-            'name' => 'Theme.Market.AppCmsHomePagedArticles',
+            'name' => 'Theme.Market.AppShopLatestPagedProducts',
         ],
     ];
-
 
     /**
      * @BeConfigItem("HEAD头标题",
@@ -35,7 +30,7 @@ class index
      *     driver = "FormItemInput"
      * )
      */
-    public string $title = 'Our Blog';
+    public string $title = 'Latest products';
 
     /**
      * @BeConfigItem("Meta描述",
@@ -43,7 +38,7 @@ class index
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaDescription = 'Our Blog';
+    public string $metaDescription = 'Latest products';
 
     /**
      * @BeConfigItem("Meta关键词",
@@ -51,7 +46,7 @@ class index
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaKeywords = 'Our Blog';
+    public string $metaKeywords = 'Latest products';
 
     /**
      * @BeConfigItem("页面标题",
@@ -60,5 +55,6 @@ class index
      * )
      */
     public string $pageTitle = '';
+
 
 }

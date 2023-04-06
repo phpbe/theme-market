@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\AppCmsCategoryArticles;
+namespace Be\Theme\Market\Section\AppCmsCategoryPagedArticles;
 
 use Be\Be;
 use Be\Theme\Section;
@@ -31,7 +31,7 @@ class Template extends Section
 
         $result = Be::getService('App.Cms.Article')->search('', $params);
 
-        echo Be::getService('Theme.Market.CmsSection')->makePagedArticlesSection($this, 'app-cms-category-articles', $result);
+        echo Be::getService('Theme.Market.CmsSection')->makePagedArticlesSection($this, 'app-cms-category-paged-articles', $result);
     }
 }
 

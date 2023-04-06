@@ -204,15 +204,17 @@ class ShopSection
         $html .= $section->getCssPadding($class);
         $html .= $section->getCssMargin($class);
 
-        $html .= '#' . $section->id . ' .' . $class . ' {';
-        //$html .= 'box-shadow: 0 0 10px var(--font-color-9);';
-        $html .= 'box-shadow: 0 0 10px #eaf0f6;';
-        $html .= 'transition: all 0.3s ease;';
+
+        $html .= '#' . $section->id . ' .' . $class . '-title {';
+        $html .= 'background-color: var(--font-color-9);';
+        $html .= 'padding: 1rem;';
+        $html .= 'font-size: 1.25rem;';
+        $html .= 'font-weight: bold;';
         $html .= '}';
 
-        $html .= '#' . $section->id . ' .' . $class . ':hover {';
-        //$html .= 'box-shadow: 0 0 15px var(--font-color-8);';
-        $html .= 'box-shadow: 0 0 15px #dae0e6;';
+        $html .= '#' . $section->id . ' .' . $class . '-body {';
+        $html .= 'border: 1px solid var(--font-color-9);';
+        $html .= 'padding: 1rem;';
         $html .= '}';
 
         $html .= '</style>';
@@ -222,45 +224,28 @@ class ShopSection
             $html .= '<div class="be-container">';
         }
 
-        if (isset($section->config->title) && $section->config->title !== '') {
+        if ($section->config->title !== '') {
+            $html .= '<div class="' . $class . '-title">';
             $html .= $section->config->title;
+            $html .= '</div>';
         }
 
+        $html .= '<div class="' . $class . '-body">';
 
         $isMobile = \Be\Be::getRequest()->isMobile();
-        foreach ($products as $article) {
+        foreach ($products as $product) {
             $html .= '<div class="be-py-20">';
-            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Cms.Article.detail', ['id' => $article->id]) . '" title="' . $article->title . '"';
+            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '" title="' . $product->title . '"';
             if (!$isMobile) {
                 $html .= ' target="_blank"';
             }
             $html .= '>';
-            $html .= $article->title;
+            $html .= $product->title;
             $html .= '</a>';
             $html .= '</div>';
         }
 
-        if (isset($section->config->more) && $section->config->more !== '') {
-
-            $moreLink = null;
-            if (isset($section->config->moreLink) && $section->config->moreLink !== '') {
-                $moreLink = $section->config->moreLink;
-            }
-
-            if ($moreLink === null && $defaultMoreLink !== null) {
-                $moreLink = $defaultMoreLink;
-            }
-
-            if ($moreLink !== null) {
-                $html .= '<div class="be-mt-100 be-bt-eee be-pt-100 be-ta-right">';
-                $html .= '<a href="' . $moreLink . '"';
-                if (!$isMobile) {
-                    $html .= ' target="_blank"';
-                }
-                $html .= '>' . $section->config->more . '</a>';
-                $html .= '</div>';
-            }
-        }
+        $html .= '</div>';
 
         if ($section->position === 'middle' && $section->config->width === 'default') {
             $html .= '</div>';
@@ -331,7 +316,7 @@ class ShopSection
         $css .= '}';
 
         $css .= '#' . $section->id . ' .' . $class . '-product {';
-        $css .= 'width: 33.3333333%;';
+        $css .= 'width: 33.33333333%;';
         $css .= 'padding-left: calc(' . $section->config->spacingTablet . ' / 2);';
         $css .= 'padding-right: calc(' . $section->config->spacingTablet . ' / 2);';
         $css .= 'margin-bottom: ' . $section->config->spacingTablet . ';';
@@ -341,29 +326,49 @@ class ShopSection
         // ============================================================================================================= 平析端
 
 
+
+
         // ------------------------------------------------------------------------------------------------------------- 电脑端
-        $css .= '@media (min-width: 992px) {';
+        $cols = 5;
+        if (isset($section->config->cols)) {
+            $cols = $section->config->cols;
+        }
 
-        $css .= '#' . $section->id . ' .' . $class . '-products {';
-        $css .= 'margin-left: calc(-' . $section->config->spacingDesktop . ' / 2);';
-        $css .= 'margin-right: calc(-' . $section->config->spacingDesktop . ' / 2);';
-        $css .= 'margin-bottom: -' . $section->config->spacingDesktop . ';';
-        $css .= '}';
+        if ($cols >= 4) {
+            $css .= '@media (min-width: 992px) {';
 
-        $css .= '#' . $section->id . ' .' . $class . '-product {';
-        $css .= 'width: 25%;';
-        $css .= 'padding-left: calc(' . $section->config->spacingDesktop . ' / 2);';
-        $css .= 'padding-right: calc(' . $section->config->spacingDesktop . ' / 2);';
-        $css .= 'margin-bottom: ' . $section->config->spacingDesktop . ';';
-        $css .= '}';
+            $css .= '#' . $section->id . ' .' . $class . '-products {';
+            $css .= 'margin-left: calc(-' . $section->config->spacingDesktop . ' / 2);';
+            $css .= 'margin-right: calc(-' . $section->config->spacingDesktop . ' / 2);';
+            $css .= 'margin-bottom: -' . $section->config->spacingDesktop . ';';
+            $css .= '}';
 
-        $css .= '}';
+            $css .= '#' . $section->id . ' .' . $class . '-product {';
+            $css .= 'width: 25%;';
+            $css .= 'padding-left: calc(' . $section->config->spacingDesktop . ' / 2);';
+            $css .= 'padding-right: calc(' . $section->config->spacingDesktop . ' / 2);';
+            $css .= 'margin-bottom: ' . $section->config->spacingDesktop . ';';
+            $css .= '}';
 
-        $css .= '@media (min-width: 1200px) {';
-        $css .= '#' . $section->id . ' .' . $class . '-product {';
-        $css .= 'width: 20%;';
-        $css .= '}';
-        $css .= '}';
+            $css .= '}';
+        }
+
+
+        if ($cols >= 5) {
+            $css .= '@media (min-width: 1200px) {';
+            $css .= '#' . $section->id . ' .' . $class . '-product {';
+            $css .= 'width: 20%;';
+            $css .= '}';
+            $css .= '}';
+        }
+
+        if ($cols >= 6) {
+            $css .= '@media (min-width: 1200px) {';
+            $css .= '#' . $section->id . ' .' . $class . '-product {';
+            $css .= 'width: 16.66666666%;';
+            $css .= '}';
+            $css .= '}';
+        }
         // ============================================================================================================= 电脑端
 
 

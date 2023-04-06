@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\AppShopLatestProducts;
 
 /**
- * @BeConfig("最新文章", icon="bi-star")
+ * @BeConfig("店熵商城-最新商品", icon="bi-star")
  */
 class Config
 {
@@ -41,7 +41,16 @@ class Config
      *     ui="return [':min' => 1, ':max' => 100];"
      * )
      */
-    public $quantity = 5;
+    public int $quantity = 5;
+
+    /**
+     * @BeConfigItem("展示多少列?",
+     *     description = "仅对电脑端有效",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 3, ':max' => 6];"
+     * )
+     */
+    public int $cols = 5;
 
     /**
      * @BeConfigItem("内边距 （手机端）",

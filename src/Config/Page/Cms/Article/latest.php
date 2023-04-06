@@ -1,9 +1,9 @@
 <?php
 
-namespace Be\Theme\Market\Config\Page\Cms\Category;
+namespace Be\Theme\Market\Config\Page\Cms\Article;
 
 
-class articles
+class latest
 {
 
     public int $west = 25;
@@ -24,7 +24,7 @@ class articles
 
     public array $centerSections = [
         [
-            'name' => 'Theme.Market.AppCmsCategoryPagedArticles',
+            'name' => 'Theme.Market.AppCmsLatestArticles',
         ],
     ];
 

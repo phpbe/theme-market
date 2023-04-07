@@ -22,7 +22,6 @@
   },
   "require": {
     "be/be": "*",
-    "be/app-shop": "*",
-    "be/app-cms": "dev-master"
+    "be/app-shop": "*"
   }
 }

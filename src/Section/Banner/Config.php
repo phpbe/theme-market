@@ -23,7 +23,7 @@ class Config
     public string $width = 'default';
 
     /**
-     * @BeConfigItem("LOGO",
+     * @BeConfigItem("图像",
      *     driver="FormItemStorageImage"
      * )
      */

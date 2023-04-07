@@ -36,9 +36,9 @@ class Config
     public string $title = 'Latest From Blogs';
 
     /**
-     * @BeConfigItem("展示多少个商品?",
+     * @BeConfigItem("展示籹量",
      *     driver = "FormItemSlider",
-     *     ui="return [':min' => 1, ':max' => 100];"
+     *     ui="return [':min' => 1, ':max' => 20];"
      * )
      */
     public $quantity = 4;

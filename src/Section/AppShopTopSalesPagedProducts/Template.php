@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\AppShopTopSalePagedProducts;
+namespace Be\Theme\Market\Section\AppShopTopSalesPagedProducts;
 
 use Be\Be;
 use Be\Theme\Section;

@@ -20,6 +20,9 @@ class latest
 
     public array $centerSections = [
         [
+            'name' => 'Theme.Market.PageTitle',
+        ],
+        [
             'name' => 'Theme.Market.AppShopLatestPagedProducts',
         ],
     ];

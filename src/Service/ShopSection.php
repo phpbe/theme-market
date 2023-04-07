@@ -83,10 +83,9 @@ class ShopSection
      * @param object $section
      * @param string $class
      * @param array $result
-     * @param string $paginationUrl
      * @return string
      */
-    public function makePagedProductsSection(object $section, string $class, array $result, string $paginationUrl = null): string
+    public function makePagedProductsSection(object $section, string $class, array $result): string
     {
         if ($result['total'] === 0) {
             return '';
@@ -111,15 +110,16 @@ class ShopSection
             $page = $result['page'];
             if ($page > $pages) $page = $pages;
 
-            $paginationUrl .= strpos($paginationUrl, '?') === false ? '?' : '&';
+            $request = Be::getRequest();
+            $route = $request->getRoute();
+            $params = $request->get();
 
             $html .= '<nav class="be-mt-300">';
             $html .= '<ul class="be-pagination" style="justify-content: center;">';
             $html .= '<li>';
             if ($page > 1) {
-                $url = $paginationUrl;
-                $url .= http_build_query(['page' => ($page - 1)]);
-                $html .= '<a href="' . $url . '">Preview</a>';
+                $params['page'] = $page - 1;
+                $html .= '<a href="' . beUrl($route, $params) . '">Preview</a>';
             } else {
                 $html .= '<span>Preview</span>';
             }
@@ -152,10 +152,9 @@ class ShopSection
                     $html .= '<span>' . $i . '</span>';
                     $html .= '</li>';
                 } else {
-                    $url = $paginationUrl;
-                    $url .= http_build_query(['page' => $i]);
                     $html .= '<li>';
-                    $html .= '<a href="' . $url . '">' . $i . '</a>';
+                    $params['page'] = $i;
+                    $html .= '<a href="' . beUrl($route, $params) . '">' . $i . '</a>';
                     $html .= '</li>';
                 }
             }
@@ -166,9 +165,8 @@ class ShopSection
 
             $html .= '<li>';
             if ($page < $pages) {
-                $url = $paginationUrl;
-                $url .= http_build_query(['page' => ($page + 1)]);
-                $html .= '<a href="' . $url . '">Next</a>';
+                $params['page'] = $page + 1;
+                $html .= '<a href="' . beUrl($route, $params) . '">Next</a>';
             } else {
                 $html .= '<span>Next</span>';
             }

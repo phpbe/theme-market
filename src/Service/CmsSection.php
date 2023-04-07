@@ -356,12 +356,11 @@ class CmsSection
         if ($pages > 1) {
 
             $page = $result['page'];
+            if ($page > $pages) $page = $pages;
 
             $request = Be::getRequest();
             $route = $request->getRoute();
             $params = $request->get();
-
-            if ($page > $pages) $page = $pages;
 
             $html .= '<nav class="be-mt-200">';
             $html .= '<ul class="be-pagination" style="justify-content: center;">';
@@ -401,8 +400,8 @@ class CmsSection
                     $html .= '<span>' . $i . '</span>';
                     $html .= '</li>';
                 } else {
-                    $params['page'] = $i;
                     $html .= '<li>';
+                    $params['page'] = $i;
                     $html .= '<a href="' . beUrl($route, $params) . '">' . $i . '</a>';
                     $html .= '</li>';
                 }

@@ -380,9 +380,22 @@ class ShopSection
         $css .= 'position: relative;';
         $css .= '}';
 
+        $css .= '#' . $section->id . ' .' . $class . '-product-image a {';
+        $css .= 'display: block;';
+        $css .= 'position: relative;';
+        $css .= 'aspect-ratio: ' . $section->config->aspectRatio . ';';
+        $css .= '}';
 
         $css .= '#' . $section->id . ' .' . $class . '-product-image img {';
-        $css .= 'width: 100%;';
+        $css .= 'display: block;';
+        $css .= 'position: absolute;';
+        $css .= 'left: 0;';
+        $css .= 'right: 0;';
+        $css .= 'top: 0;';
+        $css .= 'bottom: 0;';
+        $css .= 'margin: auto;';
+        $css .= 'max-width: 100%;';
+        $css .= 'max-height: 100%;';
         $css .= 'transition: all .3s;';
         $css .= '}';
 

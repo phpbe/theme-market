@@ -6,7 +6,7 @@ namespace Be\Theme\Market;
 class Property extends \Be\Theme\Property
 {
 
-    public string $label = '集市';
+    public string $label = 'Market';
 
 
     public string $previewImage = 'images/preview.jpg';

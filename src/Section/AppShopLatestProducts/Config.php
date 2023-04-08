@@ -53,6 +53,11 @@ class Config
     public int $cols = 5;
 
     /**
+     * @BeConfigItem("图像宽高比", driver = "FormItemInput")
+     */
+    public string $aspectRatio = '5/8';
+
+    /**
      * @BeConfigItem("内边距 （手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS padding 语法）"

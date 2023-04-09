@@ -415,6 +415,7 @@ class ShopSection
         $css .= 'border-radius: 50%;';
         $css .= 'font-size: 1rem;';
         $css .= 'line-height: 1rem;';
+        $css .= 'height: 2rem;';
         $css .= 'padding: .5rem;';
         $css .= 'margin: 0 .25rem;';
         //$css .= 'transition: all .3s;';

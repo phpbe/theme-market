@@ -380,6 +380,18 @@ class ShopSection
         $css .= 'position: relative;';
         $css .= '}';
 
+        $css .= '#' . $section->id . ' .' . $class . '-product-image:after {';
+        $css .= 'position: absolute;';
+        $css .= 'content: \'\';';
+        $css .= 'left: 0;';
+        $css .= 'top: 0;';
+        $css .= 'width: 100%;';
+        $css .= 'height: 100%;';
+        $css .= 'background: var(--font-color);';
+        $css .= 'opacity: .05;';
+        $css .= 'pointer-events: none;';
+        $css .= '}';
+
         $css .= '#' . $section->id . ' .' . $class . '-product-image a {';
         $css .= 'display: block;';
         $css .= 'position: relative;';

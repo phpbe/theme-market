@@ -387,8 +387,8 @@ class ShopSection
         $css .= 'top: 0;';
         $css .= 'width: 100%;';
         $css .= 'height: 100%;';
-        $css .= 'background: var(--font-color);';
-        $css .= 'opacity: .05;';
+        $css .= 'background: #000;';
+        $css .= 'opacity: .03;';
         $css .= 'pointer-events: none;';
         $css .= '}';
 

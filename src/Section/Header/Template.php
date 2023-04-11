@@ -263,7 +263,8 @@ class Template extends Section
             return;
         }
 
-        $categories = Be::getService('App.Shop.Category')->getCategories();
+        $categoryMenu = Be::getService('Theme.Market.CategoryMenu')->getCategoryMenu();
+        $categoryMenuTree = $categoryMenu->getTree();
 
         $beUrl = beUrl();
 
@@ -310,9 +311,30 @@ class Template extends Section
         echo '<div class="be-row">';
         echo '<div class="be-col-0 be-lg-col-auto">';
         echo '<select name="category_id" class="be-select">';
-        foreach ($categories as $category) {
-            echo '<option value="' . $category->id . '">' . $category->name . '</option>';
+
+        foreach ($categoryMenuTree as $item) {
+            $hasSubItem = false;
+            if (isset($item->subItems) && is_array($item->subItems) && count($item->subItems) > 0) {
+                $hasSubItem = true;
+            }
+
+            if (($item->route === 'Shop.Category.products' && isset($item->params['id']))) {
+                echo '<option value="' . $item->params['id'] . '">' . $item->label . '</option>';
+            } else {
+                echo '<option value="" disabled>' . $item->label . '</option>';
+            }
+
+            if ($hasSubItem) {
+                foreach ($item->subItems as $subItem) {
+                    if (($subItem->route === 'Shop.Category.products' && isset($subItem->params['id']))) {
+                        echo '<option value="' . $subItem->params['id'] . '">  ' . $subItem->label . '</option>';
+                    } else {
+                        echo '<option value="" disabled>  ' . $subItem->label . '</option>';
+                    }
+                }
+            }
         }
+
         echo '</select>';
         echo '</div>';
         echo '<div class="be-col">';
@@ -357,9 +379,32 @@ class Template extends Section
         echo '</div>';
 
         echo '<ul class="header-all-categories-ul">';
-        foreach ($categories as $category) {
-            echo '<li><a href="' . beUrl('Shop.Category.products', ['id' => $category->id]) . '"><i class="bi-record-fill"></i><span>' . $category->name . '</span></a></li>';
+        foreach ($categoryMenuTree as $item) {
+            $hasSubItem = false;
+            if (isset($item->subItems) && is_array($item->subItems) && count($item->subItems) > 0) {
+                $hasSubItem = true;
+            }
+
+            $url = 'javascript:void(0);';
+            if ($item->route) {
+                if ($item->params) {
+                    $url = beUrl($item->route, $item->params);
+                } else {
+                    $url = beUrl($item->route);
+                }
+            } else {
+                if ($item->url) {
+                    if ($item->url === '/') {
+                        $url = $beUrl;
+                    } else {
+                        $url = $item->url;
+                    }
+                }
+            }
+
+            echo '<li><a href="' . $url . '"><i class="bi-record-fill"></i><span>' . $item->label . '</span></a></li>';
         }
+
         echo '</ul>';
         echo '</div>';
 

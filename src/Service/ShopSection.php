@@ -395,7 +395,9 @@ class ShopSection
         $css .= '#' . $section->id . ' .' . $class . '-product-image a {';
         $css .= 'display: block;';
         $css .= 'position: relative;';
-        $css .= 'aspect-ratio: ' . $section->config->aspectRatio . ';';
+
+        $configProduct = Be::getConfig('App.Shop.Product');
+        $css .= 'aspect-ratio: ' . $configProduct->imageAspectRatio . ';';
         $css .= '}';
 
         $css .= '#' . $section->id . ' .' . $class . '-product-image img {';

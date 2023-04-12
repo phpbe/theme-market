@@ -33,7 +33,7 @@ class Config
      *     ui="return [':min' => 0, ':max' => 100];"
      * )
      */
-    public int $pageSize = 24;
+    public int $pageSize = 48;
 
     /**
      * @BeConfigItem("展示多少列?",

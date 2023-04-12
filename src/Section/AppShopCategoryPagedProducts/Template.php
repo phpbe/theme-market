@@ -21,6 +21,7 @@ class Template extends Section
 
         $page = $request->get('page', 1);
         $params = [
+            'categoryId' => $this->page->categoryId,
             'orderBy' => 'publish_time',
             'orderByDir' => 'desc',
             'page' => $page,
@@ -32,7 +33,7 @@ class Template extends Section
 
         $result = Be::getService('App.Shop.Product')->search('', $params);
 
-        echo Be::getService('Theme.Market.ShopSection')->makePagedProductsSection($this, 'app-shop-latest-products', $result);
+        echo Be::getService('Theme.Market.ShopSection')->makePagedProductsSection($this, 'app-shop-category-paged-products', $result);
 
     }
 

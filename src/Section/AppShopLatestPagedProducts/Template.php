@@ -32,7 +32,7 @@ class Template extends Section
 
         $result = Be::getService('App.Shop.Product')->search('', $params);
 
-        echo Be::getService('Theme.Market.ShopSection')->makePagedProductsSection($this, 'app-shop-latest-products', $result);
+        echo Be::getService('Theme.Market.ShopSection')->makePagedProductsSection($this, 'app-shop-latest-paged-products', $result);
 
     }
 

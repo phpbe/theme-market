@@ -115,7 +115,7 @@ class ShopSection
             $params = $request->get();
 
             $html .= '<nav class="be-mt-300">';
-            $html .= '<ul class="be-pagination" style="justify-content: center;">';
+            $html .= '<ul class="be-pagination be-pagination-lg" style="justify-content: center;">';
             $html .= '<li>';
             if ($page > 1) {
                 $params['page'] = $page - 1;

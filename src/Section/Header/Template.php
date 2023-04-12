@@ -263,7 +263,7 @@ class Template extends Section
             return;
         }
 
-        $categoryMenu = Be::getService('Theme.Market.CategoryMenu')->getCategoryMenu();
+        $categoryMenu =  Be::getMenu('Category');
         $categoryMenuTree = $categoryMenu->getTree();
 
         $beUrl = beUrl();

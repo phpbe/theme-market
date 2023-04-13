@@ -98,6 +98,22 @@ class Template extends Section
         echo 'color: var(--major-color);';
         echo '}';
 
+        echo '#' . $this->id . ' .swiper-small .swiper-button-prev {';
+        echo 'left: 0;';
+        echo 'right: 0;';
+        echo 'top: 0;';
+        echo 'bottom: auto;';
+        echo 'transform: rotate(-90deg);';
+        echo '}';
+
+        echo '#' . $this->id . ' .swiper-small .swiper-button-next {';
+        echo 'left: 0;';
+        echo 'right: 0;';
+        echo 'top: auto;';
+        echo 'bottom: 0;';
+        echo 'transform: rotate(90deg);';
+        echo '}';
+
         echo '#' . $this->id . ' .swiper-large .swiper-slide {';
         echo 'max-height:80vh;';
         echo '}';

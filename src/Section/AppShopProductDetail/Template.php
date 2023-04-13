@@ -79,7 +79,7 @@ class Template extends Section
         echo '}';
 
         echo '#' . $this->id . ' .swiper-small {';
-        //echo 'overflow: hidden;';
+        echo 'padding: 20px 0;';
         echo 'position:relative;';
         echo '--swiper-navigation-size: 20px;';
         echo '}';

@@ -18,7 +18,7 @@ class Template extends Section
 
         $products = Be::getService('App.Shop.Product')->getLatestProducts($this->config->quantity);
         if (count($products) === 0) {
-            $products = Be::getService('App.Shop.Product')->getSampleProducts($this->config->quantity);
+            return;
         }
 
         $defaultMoreLink = beUrl('Shop.Product.latest');

@@ -1,8 +1,8 @@
 <?php
-namespace Be\Theme\Market\Section\AppShopLatestPagedProducts;
+namespace Be\Theme\Market\Section\AppShopHottestPagedProducts;
 
 /**
- * @BeConfig("店熵商城-最新分页商品", icon="bi-star")
+ * @BeConfig("店熵商城-热门分页商品", icon="bi-star")
  */
 class Config
 {

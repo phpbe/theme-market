@@ -1,8 +1,8 @@
 <?php
-namespace Be\Theme\Market\Section\AppShopLatestPagedProducts;
+namespace Be\Theme\Market\Section\AppShopHottestProducts;
 
 /**
- * @BeConfig("店熵商城-最新分页商品", icon="bi-star")
+ * @BeConfig("店熵商城-热门商品", icon="bi-star")
  */
 class Config
 {
@@ -13,13 +13,35 @@ class Config
     public int $enable = 1;
 
     /**
-     * @BeConfigItem("分页太小?",,
-     *     description = "分页为0时取系统配置",
-     *     driver = "FormItemSlider",
-     *     ui="return [':min' => 0, ':max' => 100];"
+     * @BeConfigItem("宽度",
+     *     description="位于middle时有效",
+     *     driver="FormItemSelect",
+     *     keyValues = "return ['default' => '默认', 'fullWidth' => '全屏'];"
      * )
      */
-    public int $pageSize = 48;
+    public string $width = 'default';
+
+    /**
+     * @BeConfigItem("背景颜色",
+     *     driver = "FormItemColorPicker"
+     * )
+     */
+    public string $backgroundColor = '';
+
+    /**
+     * @BeConfigItem("标题",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $title = 'Hottest Products';
+
+    /**
+     * @BeConfigItem("展示多少个商品?",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 1, ':max' => 100];"
+     * )
+     */
+    public int $quantity = 5;
 
     /**
      * @BeConfigItem("展示多少列?",
@@ -28,7 +50,7 @@ class Config
      *     ui="return [':min' => 3, ':max' => 6];"
      * )
      */
-    public int $cols = 4;
+    public int $cols = 5;
 
     /**
      * @BeConfigItem("内边距 （手机端）",
@@ -68,7 +90,7 @@ class Config
      *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $marginTablet = '1.5rem 0 0 0';
+    public string $marginTablet = '2rem 0 0 0';
 
     /**
      * @BeConfigItem("外边距 （电脑端）",
@@ -76,7 +98,7 @@ class Config
      *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $marginDesktop = '2rem 0 0 0';
+    public string $marginDesktop = '3rem 0 0 0';
 
     /**
      * @BeConfigItem("间距（手机端）",

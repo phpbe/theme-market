@@ -202,7 +202,6 @@ class ShopSection
         $html .= $section->getCssPadding($class);
         $html .= $section->getCssMargin($class);
 
-
         $html .= '#' . $section->id . ' .' . $class . '-title {';
         $html .= 'background-color: var(--font-color-9);';
         $html .= 'padding: 1rem;';
@@ -214,6 +213,45 @@ class ShopSection
         $html .= 'border: 1px solid var(--font-color-9);';
         $html .= 'padding: 1rem;';
         $html .= '}';
+
+        $html .= '#' . $section->id . ' .' . $class . '-product-image {';
+        $html .= 'width: 60px;';
+        $html .= 'position: relative;';
+        $html .= '}';
+
+        $html .= '#' . $section->id . ' .' . $class . '-product-image:after {';
+        $html .= 'position: absolute;';
+        $html .= 'content: \'\';';
+        $html .= 'left: 0;';
+        $html .= 'top: 0;';
+        $html .= 'width: 100%;';
+        $html .= 'height: 100%;';
+        $html .= 'background: #000;';
+        $html .= 'opacity: .03;';
+        $html .= 'pointer-events: none;';
+        $html .= '}';
+
+        $html .= '#' . $section->id . ' .' . $class . '-product-image a {';
+        $html .= 'display: block;';
+        $html .= 'position: relative;';
+
+        $configProduct = Be::getConfig('App.Shop.Product');
+        $html .= 'aspect-ratio: ' . $configProduct->imageAspectRatio . ';';
+        $html .= '}';
+
+        $html .= '#' . $section->id . ' .' . $class . '-product-image img {';
+        $html .= 'display: block;';
+        $html .= 'position: absolute;';
+        $html .= 'left: 0;';
+        $html .= 'right: 0;';
+        $html .= 'top: 0;';
+        $html .= 'bottom: 0;';
+        $html .= 'margin: auto;';
+        $html .= 'max-width: 100%;';
+        $html .= 'max-height: 100%;';
+        $html .= 'transition: all .3s;';
+        $html .= '}';
+
 
         $html .= '</style>';
 
@@ -230,16 +268,77 @@ class ShopSection
 
         $html .= '<div class="' . $class . '-body">';
 
+        $nnImage = Be::getProperty('App.Shop')->getWwwUrl() . '/images/product/no-image.jpg';
         $isMobile = \Be\Be::getRequest()->isMobile();
         foreach ($products as $product) {
-            $html .= '<div class="be-py-20">';
-            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '" title="' . $product->title . '"';
+            $html .= '<div class="be-row be-my-50">';
+            $html .= '<div class="be-col-24 be-lg-col-auto">';
+
+            $defaultImage = null;
+            foreach ($product->images as $image) {
+                if ($image->is_main) {
+                    $defaultImage = $image;
+                }
+            }
+
+            if (!$defaultImage && count($product->images) > 0) {
+                $defaultImage = $product->images[0];
+            }
+
+            if (!$defaultImage) {
+                $defaultImage = (object)[
+                    'url' => $nnImage,
+                    'is_main' => 1,
+                ];
+            }
+
+            $html .= '<div class="' . $class . '-product-image">';
+            $html .= '<a href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '"';
             if (!$isMobile) {
                 $html .= ' target="_blank"';
             }
             $html .= '>';
-            $html .= $product->title;
+            $html .= '<img src="' . $defaultImage->url . '" alt="' . htmlspecialchars($product->name) . '">';
             $html .= '</a>';
+            $html .= '</div>';
+
+            $html .= '</div>';
+            $html .= '<div class="be-col-24 be-lg-col-auto"><div class="be-pl-100 be-mt-100"></div></div>';
+            $html .= '<div class="be-col-24 be-lg-col" style="display:flex; align-items: center;">';
+            $html .= '<div>';
+            $html .= '<a class="be-d-block be-t-ellipsis-3" href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '" title="' . $product->title . '"';
+            if (!$isMobile) {
+                $html .= ' target="_blank"';
+            }
+            $html .= '>';
+            $html .= $product->name;
+            $html .= '</a>';
+
+            $html .= '<div class="be-mt-100">';
+
+            $configStore = Be::getConfig('App.Shop.Store');
+            $html .= '<span class="be-c-red be-fw-bold">' . $configStore->currencySymbol;
+            if ($product->price_from === $product->price_to) {
+                $html .= $product->price_from;
+            } else {
+                $html .= $product->price_from . '~' . $product->price_to;;
+            }
+            $html .= '</span>';
+
+            if ($product->original_price_from > 0 && $product->original_price_from != $product->price_from) {
+                $html .= '<span class="be-td-line-through be-ml-50 be-c-font-4">' . $configStore->currencySymbol;
+                if ($product->original_price_from === $product->original_price_to) {
+                    $html .= $product->original_price_from;
+                } else {
+                    $html .= $product->original_price_from . '~' . $product->original_price_to;;
+                }
+                $html .= '</span>';
+            }
+
+            $html .= '</div>';
+
+            $html .= '</div>';
+            $html .= '</div>';
             $html .= '</div>';
         }
 
@@ -475,19 +574,8 @@ class ShopSection
         foreach ($products as $product) {
             $defaultImage = null;
             foreach ($product->images as $image) {
-                if ($section->config->hoverEffect == 'toggleImage') {
-                    if ($image->is_main) {
-                        $defaultImage = $image;
-                    }
-
-                    if ($defaultImage) {
-                        break;
-                    }
-                } else {
-                    if ($image->is_main) {
-                        $defaultImage = $image;
-                        break;
-                    }
+                if ($image->is_main) {
+                    $defaultImage = $image;
                 }
             }
 
@@ -498,11 +586,8 @@ class ShopSection
             if (!$defaultImage) {
                 $nnImage = Be::getProperty('App.Shop')->getWwwUrl() . '/images/product/no-image.jpg';
                 $defaultImage = (object)[
-                    'id' => '',
-                    'product_id' => $product->id,
                     'url' => $nnImage,
                     'is_main' => 1,
-                    'ordering' => 0,
                 ];
             }
 
@@ -543,7 +628,7 @@ class ShopSection
             $html .= '</div>';
 
             $html .= '<div class="be-mt-100 be-ta-center">';
-            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '"';
+            $html .= '<a class="be-d-block be-t-ellipsis-3" href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '"';
             if (!$isMobile) {
                 $html .= ' target="_blank"';
             }

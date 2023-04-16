@@ -420,58 +420,77 @@ class Template extends Section
 
 
         // ------------------------------------------------------------------------------------------------------------- 多款式
-        echo '.style-icon-link {';
+        echo '#' . $this->id . ' .style-icon-link {';
         echo 'display: inline-block;';
         echo 'border: var(--font-color-4) 1px solid;';
         echo '}';
 
-
-        echo '.style-icon-link-image,';
-        echo '.style-icon-link-color {';
-        echo 'width: 40px;';
-        echo 'height: 40px;';
-        echo 'text-align: center;';
-        echo 'overflow: hidden;';
-        echo '}';
-
-        echo '.style-icon-link-current {';
+        echo '#' . $this->id . ' .style-icon-link-current {';
         echo 'border: var(--major-color) 1px solid !important;';
         echo '}';
 
-        echo '.style-icon-link-disable {';
-        echo 'border: #eee 1px solid !important;';
+        echo '#' . $this->id . ' .style-icon-link-disable {';
+        echo 'border: var(--font-color-9) 1px solid !important;';
         echo 'cursor: not-allowed !important;';
         echo '}';
 
-        echo '.style-icon {';
+        echo '#' . $this->id . ' .style-icon {';
         echo 'display: inline-block;';
         echo 'border: #fff 2px solid;';
+        echo 'border-radius: .1rem;';
         echo '}';
 
-        echo '.style-icon-text {';
-        echo 'border-radius: .1rem;';
+        echo '#' . $this->id . ' .style-icon-text {';
         echo 'padding: 0.25rem 0.75rem;';
         echo '}';
 
-        echo '.style-icon-image, .style-icon-color {';
-        echo 'border-radius: .1rem;';
+        echo '#' . $this->id . ' .style-icon-image {';
+        echo 'display: block;';
+        echo 'width: 40px;';
+        $configProduct = Be::getConfig('App.Shop.Product');
+        echo 'aspect-ratio: ' . $configProduct->imageAspectRatio . ';';
+        echo 'position: relative;';
+        echo '}';
+
+        echo '#' . $this->id . ' .style-icon-image:after {';
+        echo 'position: absolute;';
+        echo 'content: \'\';';
+        echo 'left: 0;';
+        echo 'top: 0;';
         echo 'width: 100%;';
         echo 'height: 100%;';
-        echo 'text-align: center;';
-        echo 'overflow: hidden;';
+        echo 'background: #000;';
+        echo 'opacity: .03;';
+        echo 'pointer-events: none;';
         echo '}';
 
-        echo '.style-icon-image img {';
+        echo '#' . $this->id . ' .style-icon-image img {';
+        echo 'display: block;';
+        echo 'position: absolute;';
+        echo 'left: 0;';
+        echo 'right: 0;';
+        echo 'top: 0;';
+        echo 'bottom: 0;';
+        echo 'margin: auto;';
         echo 'max-width: 100%;';
+        echo 'max-height: 100%;';
+        echo 'transition: all .3s;';
         echo '}';
 
-        echo '.style-icon-link-current .style-icon-text {';
-        echo 'border-color: var(--major-color) !important;';
-        echo 'background-color: var(--major-color-9) !important;';
+
+        echo '#' . $this->id . ' .style-icon-color {';
+        echo 'display: block;';
+        echo 'width: 40px;';
+        echo 'height: 40px;';
         echo '}';
 
-        echo '.style-icon-link-disable .style-icon-text {';
-        echo 'background-color: var(--font-color-4) !important;';
+
+        echo '#' . $this->id . ' .style-icon-link-current .style-icon-text {';
+        echo 'color: var(--major-color);';
+        echo '}';
+
+        echo '#' . $this->id . ' .style-icon-link-disable .style-icon-text {';
+        echo 'color: var(--font-color-4) !important;';
         echo '}';
         // ============================================================================================================= 多款式
 

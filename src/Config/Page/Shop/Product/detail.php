@@ -11,13 +11,13 @@ class detail
 
     public array $centerSections = [
         [
-            'name' => 'Theme.Market.AppShopProductDetailSummary',
+            'name' => 'Theme.Market.App.Shop.Product.Detail.Main',
         ],
         [
-            'name' => 'Theme.Market.AppShopProductDetailDescription',
+            'name' => 'Theme.Market.App.Shop.Product.Detail.Description',
         ],
         [
-            'name' => 'Theme.Market.AppShopProductDetailReviews',
+            'name' => 'Theme.Market.App.Shop.Product.Detail.Reviews',
         ],
     ];
 

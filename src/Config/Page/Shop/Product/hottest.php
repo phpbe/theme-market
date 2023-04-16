@@ -11,10 +11,10 @@ class hottest
 
     public array $westSections = [
         [
-            'name' => 'Theme.Market.AppShopSideCategories',
+            'name' => 'Theme.Market.App.Shop.Category.TopNSide',
         ],
         [
-            'name' => 'Theme.Market.AppShopSideTopSalesProducts',
+            'name' => 'Theme.Market.App.Shop.Product.TopSalesTopNSide',
         ],
     ];
 
@@ -23,7 +23,7 @@ class hottest
             'name' => 'Theme.Market.PageTitle',
         ],
         [
-            'name' => 'Theme.Market.AppShopHottestPagedProducts',
+            'name' => 'Theme.Market.App.Shop.Product.Hottest',
         ],
     ];
 

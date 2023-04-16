@@ -15,22 +15,22 @@ class index
             'name' => 'Theme.Market.Banner',
         ],
         [
-            'name' => 'Theme.Market.AppShopTopSalesProducts',
+            'name' => 'Theme.Market.App.Shop.Product.TopSalesTopN',
         ],
         [
-            'name' => 'Theme.Market.AppShopCategories',
+            'name' => 'Theme.Market.App.Shop.Category.TopN',
         ],
         [
             'name' => 'Theme.Market.Banners',
         ],
         [
-            'name' => 'Theme.Market.AppShopLatestProducts',
+            'name' => 'Theme.Market.App.Shop.Product.LatestTopN',
         ],
         [
             'name' => 'Theme.Market.Banner',
         ],
         [
-            'name' => 'Theme.Market.AppCmsLatestArticles',
+            'name' => 'Theme.Market.App.Cms.Article.LatestTopN',
         ],
     ];
 

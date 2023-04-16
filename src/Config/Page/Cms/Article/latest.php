@@ -12,19 +12,19 @@ class latest
 
     public array $westSections = [
         [
-            'name' => 'Theme.Market.AppCmsSideSearchForm',
+            'name' => 'Theme.Market.App.Cms.Article.SearchFormSide',
         ],
         [
-            'name' => 'Theme.Market.AppCmsSideCategories',
+            'name' => 'Theme.Market.App.Cms.Category.TopNSide',
         ],
         [
-            'name' => 'Theme.Market.AppCmsSideTopTags',
+            'name' => 'Theme.Market.App.Cms.Article.TagsTopNSide',
         ],
     ];
 
     public array $centerSections = [
         [
-            'name' => 'Theme.Market.AppCmsLatestArticles',
+            'name' => 'Theme.Market.App.Cms.Articles.Latest',
         ],
     ];
 

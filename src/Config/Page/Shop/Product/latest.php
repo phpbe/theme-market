@@ -11,10 +11,10 @@ class latest
 
     public array $westSections = [
         [
-            'name' => 'Theme.Market.AppShopSideCategories',
+            'name' => 'Theme.Market.App.Shop.Category.TopNSide',
         ],
         [
-            'name' => 'Theme.Market.AppShopSideTopSalesProducts',
+            'name' => 'Theme.Market.App.Shop.Product.TopSalesTopNSide',
         ],
     ];
 
@@ -23,7 +23,7 @@ class latest
             'name' => 'Theme.Market.PageTitle',
         ],
         [
-            'name' => 'Theme.Market.AppShopLatestPagedProducts',
+            'name' => 'Theme.Market.App.Shop.Product.Latest',
         ],
     ];
 

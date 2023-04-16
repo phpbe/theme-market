@@ -14,7 +14,7 @@ class search
             'name' => 'Theme.Market.PageTitle',
         ],
         [
-            'name' => 'Theme.Market.AppShopSearchPagedProducts',
+            'name' => 'Theme.Market.App.Shop.Product.Search',
         ],
     ];
 

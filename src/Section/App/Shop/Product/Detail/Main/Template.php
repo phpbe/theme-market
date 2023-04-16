@@ -316,6 +316,7 @@ class Template extends Section
 
     private function css()
     {
+        $configProduct = Be::getConfig('App.Shop.Product');
         $isMobile = Be::getRequest()->isMobile();
         $wwwUrl = Be::getProperty('App.Shop')->getWwwUrl();
 
@@ -330,7 +331,6 @@ class Template extends Section
         echo $this->getCssPadding('app-shop-product-detail-main');
 
         echo '#' . $this->id . ' .swiper-slide {';
-        $configProduct = Be::getConfig('App.Shop.Product');
         echo 'aspect-ratio: ' . $configProduct->imageAspectRatio . ';';
         echo '}';
 
@@ -447,7 +447,6 @@ class Template extends Section
         echo '#' . $this->id . ' .style-icon-image {';
         echo 'display: block;';
         echo 'width: 40px;';
-        $configProduct = Be::getConfig('App.Shop.Product');
         echo 'aspect-ratio: ' . $configProduct->imageAspectRatio . ';';
         echo 'position: relative;';
         echo '}';

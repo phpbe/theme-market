@@ -10,7 +10,7 @@ class Template extends Section
 
     public array $positions = ['middle', 'center'];
 
-    public array $routes = ['Cms.Article.detail'];
+    public array $routes = ['Cms.Article.detail', 'Cms.Article.preview'];
 
     public function display()
     {

@@ -310,8 +310,10 @@ class Template extends Section
         echo '<form class="header-form" method="get" action="' . beUrl('Shop.Product.search') . '">';
         echo '<div class="be-row">';
         echo '<div class="be-col-0 be-lg-col-auto">';
-        echo '<select name="category_id" class="be-select">';
 
+        $categoryId = \Be\Be::getRequest()->get('category_id', '');
+        echo '<select name="category_id" class="be-select">';
+        echo '<option value="">All Categories</option>';
         foreach ($categoryMenuTree as $item) {
             $hasSubItem = false;
             if (isset($item->subItems) && is_array($item->subItems) && count($item->subItems) > 0) {
@@ -319,7 +321,11 @@ class Template extends Section
             }
 
             if (($item->route === 'Shop.Category.products' && isset($item->params['id']))) {
-                echo '<option value="' . $item->params['id'] . '">' . $item->label . '</option>';
+                echo '<option value="' . $item->params['id'] . '"';
+                if ($categoryId === $item->params['id']) {
+                    echo ' selected';
+                }
+                echo '>' . $item->label . '</option>';
             } else {
                 echo '<option value="" disabled>' . $item->label . '</option>';
             }
@@ -338,7 +344,10 @@ class Template extends Section
         echo '</select>';
         echo '</div>';
         echo '<div class="be-col">';
-        echo '<input type="text" class="be-input" name="keywords" value="' . Be::getRequest()->get('keywords', '') . '">';
+
+        $keywords = \Be\Be::getRequest()->get('keywords', '');
+        $keywords = urldecode($keywords);
+        echo '<input type="text" class="be-input" name="keywords" value="' . $keywords . '">';
         echo '</div>';
         echo '<div class="be-col-auto">';
         echo '<button type="submit" class="be-btn be-lh-175"><i class="bi-search"></i></button>';

@@ -1,36 +1,16 @@
 <?php
-namespace Be\Theme\Market\Section\AppShopProductDetail;
+namespace Be\Theme\Market\Section\AppShopProductDetailSummary;
 
 /**
  * @BeConfig("店熵商城-商品详情",  icon="el-icon-s-data")
  */
 class Config
 {
-
     /**
-     * @BeConfigItem("是否显示描述", driver = "FormItemSwitch")
+     * @BeConfigItem("最新",
+     *     driver = "FormItemSwitch")
      */
-    public int $showDescription = 1;
-
-    /**
-     * @BeConfigItem("描述标题", driver = "FormItemInput")
-     */
-    public string $descriptionTitle = 'Description';
-
-    /**
-     * @BeConfigItem("是否显示评论", driver = "FormItemSwitch")
-     */
-    public int $showReviews = 1;
-
-    /**
-     * @BeConfigItem("评论标题", driver = "FormItemInput")
-     */
-    public string $reviewTitle = 'Customer reviews';
-
-    /**
-     * @BeConfigItem("评论分页大小", driver = "FormItemInputNumberInt")
-     */
-    public int $reviewPageSize = 10;
+    public int $enable = 1;
 
     /**
      * @BeConfigItem("宽度",
@@ -46,7 +26,7 @@ class Config
      *     driver="FormItemColorPicker"
      * )
      */
-    public string $backgroundColor = '#FFFFFF';
+    public string $backgroundColor = '';
 
     /**
      * @BeConfigItem("内边距（手机端）",
@@ -73,24 +53,27 @@ class Config
     public string $paddingDesktop = '0';
 
     /**
-     * @BeConfigItem("间距（手机端）",
-     *     driver = "FormItemInput"
+     * @BeConfigItem("外边距 （手机端）",
+     *     driver = "FormItemInput",
+     *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $spacingMobile = '1.5rem';
+    public string $marginMobile = '1rem 0 0 0';
 
     /**
-     * @BeConfigItem("间距（平板端）",
-     *     driver = "FormItemInput"
+     * @BeConfigItem("外边距 （平板端）",
+     *     driver = "FormItemInput",
+     *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $spacingTablet = '1.75rem';
+    public string $marginTablet = '2rem 0 0 0';
 
     /**
-     * @BeConfigItem("间距（电脑端）",
-     *     driver = "FormItemInput"
+     * @BeConfigItem("外边距 （电脑端）",
+     *     driver = "FormItemInput",
+     *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $spacingDesktop = '2rem';
+    public string $marginDesktop = '3rem 0 0 0';
 
 }

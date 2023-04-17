@@ -869,8 +869,8 @@ class Template extends Section
 
             $(document).ready(function () {
 
+                <?php if ($this->page->product->style === 2) { ?>
                 let defaultProductItem = <?php echo json_encode($this->page->product->items[0]); ?>;
-
                 let match = false;
                 for (let style of product.styles) {
                     for (let styleValueIndex in style.items) {
@@ -890,6 +890,7 @@ class Template extends Section
                         }
                     }
                 }
+                <?php } ?>
 
                 updateStyles();
 

@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Cms\Home;
 
 /**
- * @BeConfig("首页文章", icon="bi-star")
+ * @BeConfig("CMS-首页文章", icon="bi-star", ordering="100.0101")
  */
 class Config
 {

@@ -3,7 +3,7 @@
 namespace Be\Theme\Market\Section\App\Cms\Article\Latest;
 
 /**
- * @BeConfig("最新文章", icon="bi-star")
+ * @BeConfig("CMS-最新文章列表", icon="bi-star", ordering="100.0201")
  */
 class Config
 {

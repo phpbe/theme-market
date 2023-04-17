@@ -3,7 +3,7 @@ namespace Be\Theme\Market\Section\Slider;
 
 
 /**
- * @BeConfig("轮播图", icon="el-icon-video-play", ordering="1")
+ * @BeConfig("轮播图", icon="el-icon-video-play", ordering="3")
  */
 class Config
 {

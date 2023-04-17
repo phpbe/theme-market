@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\Header;
 
 /**
- * @BeConfig("头部主体", ordering="3")
+ * @BeConfig("头部主体", ordering="2")
  */
 class Config
 {

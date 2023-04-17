@@ -3,7 +3,7 @@
 namespace Be\Theme\Market\Section\App\Cms\Article\SearchFormSide;
 
 /**
- * @BeConfig("搜索表单", icon="bi-search")
+ * @BeConfig("CMS-搜索表单边栏", icon="bi-search", ordering="100.0203")
  */
 class Config
 {

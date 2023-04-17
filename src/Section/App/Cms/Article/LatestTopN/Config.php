@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Cms\Article\LatestTopN;
 
 /**
- * @BeConfig("最新文章", icon="bi-star")
+ * @BeConfig("CMS-最新文章TopN", icon="bi-star", ordering="100.0202")
  */
 class Config
 {

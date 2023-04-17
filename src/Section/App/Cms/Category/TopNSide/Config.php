@@ -3,7 +3,7 @@
 namespace Be\Theme\Market\Section\App\Cms\Category\TopNSide;
 
 /**
- * @BeConfig("CMS-边栏分类", icon="bi-search")
+ * @BeConfig("CMS-边栏分类", icon="bi-search", ordering="100.0302")
  */
 class Config
 {

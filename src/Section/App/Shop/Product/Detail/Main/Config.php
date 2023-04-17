@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Product\Detail\Main;
 
 /**
- * @BeConfig("店熵商城-商品详情",  icon="el-icon-s-data")
+ * @BeConfig("店熵商城-商品详情",  icon="el-icon-s-data", ordering="99.0111")
  */
 class Config
 {

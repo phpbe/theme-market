@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\Banner;
 
 /**
- * @BeConfig("横幅", ordering="2")
+ * @BeConfig("横幅", ordering="5")
  */
 class Config
 {

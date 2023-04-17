@@ -3,7 +3,7 @@
 namespace Be\Theme\Market\Section\Footer;
 
 /**
- * @BeConfig("底部")
+ * @BeConfig("底部", ordering="7")
  */
 class Config
 {

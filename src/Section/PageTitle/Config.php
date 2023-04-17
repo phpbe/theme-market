@@ -3,7 +3,7 @@ namespace Be\Theme\Market\Section\PageTitle;
 
 
 /**
- * @BeConfig("页面主体标题", icon="bi-type-h1", ordering="1")
+ * @BeConfig("页面主体标题", icon="bi-type-h1", ordering="4")
  */
 class Config
 {

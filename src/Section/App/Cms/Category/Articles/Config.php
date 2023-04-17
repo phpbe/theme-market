@@ -3,7 +3,7 @@
 namespace Be\Theme\Market\Section\App\Cms\Category\Articles;
 
 /**
- * @BeConfig("分类文章", icon="bi-home")
+ * @BeConfig("CMS-分类文章", icon="bi-home", ordering="100.0301")
  */
 class Config
 {

@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\HeaderToolbar;
 
 /**
- * @BeConfig("头部工具栏", ordering="2")
+ * @BeConfig("头部工具栏", ordering="1")
  */
 class Config
 {

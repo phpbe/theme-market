@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Product\TopSalesTopNSide;
 
 /**
- * @BeConfig("店熵商城-边栏热销商品", icon="bi-star")
+ * @BeConfig("店熵商城-边栏热销商品", icon="bi-star", ordering="99.0109")
  */
 class Config
 {

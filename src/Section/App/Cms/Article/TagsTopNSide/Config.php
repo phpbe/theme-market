@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Cms\Article\TagsTopNSide;
 
 /**
- * @BeConfig("热门标签", icon="bi-search-heart")
+ * @BeConfig("CMS-热门标签边栏", icon="bi-search-heart", ordering="100.0204")
  */
 class Config
 {

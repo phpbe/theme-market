@@ -89,7 +89,7 @@ class Template extends Section
         $this->summaryRight();
 
         echo '</div>';
-        echo '<div class="be-col-24 be-md-col-auto"><div class="be-pl-200 be-mt-200"></div></div>';
+        echo '<div class="be-col-24 be-md-col-auto"><div class="be-pl-200"></div></div>';
         echo '<div class="be-col-24 be-md-col-auto">';
 
         $product = $this->page->product;
@@ -100,13 +100,13 @@ class Template extends Section
         echo '<input type="hidden" name="product_id" value="' . $product->id . '">';
         echo '<input type="hidden" name="product_item_id" value="" id="app-shop-product-detail-main-item-id">';
 
-        echo '<div>';
+        echo '<div class="be-d-none be-md-d-block">';
         $configStore = Be::getConfig('App.Shop.Store');
         echo '<span class="be-fw-bold">' . $configStore->currency . ': </span>';
 
         if ($product->original_price_to !== '0.00') {
             if ($product->original_price_from !== $product->price_from || $product->original_price_to !== $product->price_to) {
-                echo '<span class="be-td-line-through be-ml-50" id="app-shop-product-detail-main-original-price-range">' . $configStore->currencySymbol;
+                echo '<span class="be-td-line-through be-ml-50 app-shop-product-detail-main-original-price-range">' . $configStore->currencySymbol;
                 if ($product->original_price_from === $product->original_price_to) {
                     echo $product->original_price_from;
                 } else {
@@ -116,7 +116,7 @@ class Template extends Section
             }
         }
 
-        echo '<span class="be-fw-bold be-ml-50" id="app-shop-product-detail-main-price-range">' . $configStore->currencySymbol;
+        echo '<span class="be-fw-bold be-ml-50 app-shop-product-detail-main-price-range">' . $configStore->currencySymbol;
         if ($product->price_from === $product->price_to) {
             echo $product->price_from;
         } else {
@@ -129,7 +129,7 @@ class Template extends Section
 
         echo '<label class="be-d-block be-mt-200 be-fw-bold" for="quantity">Quantity: </label>';
         echo '<div class="be-mt-50">';
-        echo '<select class="be-select" onchange="changeQuantity(0);">';
+        echo '<select class="be-select" name="quantity" id="app-shop-product-detail-main-quantity">';
         for ($i = 1; $i <= 30; $i++) {
             echo '<option value="' . $i . '">' . $i . '</option>';
         }
@@ -198,7 +198,7 @@ class Template extends Section
 
         if ($product->original_price_to !== '0.00') {
             if ($product->original_price_from !== $product->price_from || $product->original_price_to !== $product->price_to) {
-                echo '<span class="be-td-line-through be-ml-50" id="app-shop-product-detail-main-original-price-range">' . $configStore->currencySymbol;
+                echo '<span class="be-td-line-through be-ml-50 app-shop-product-detail-main-original-price-range">' . $configStore->currencySymbol;
                 if ($product->original_price_from === $product->original_price_to) {
                     echo $product->original_price_from;
                 } else {
@@ -208,7 +208,7 @@ class Template extends Section
             }
         }
 
-        echo '<span class="be-fw-bold be-ml-50" id="app-shop-product-detail-main-price-range">' . $configStore->currencySymbol;
+        echo '<span class="be-fw-bold be-ml-50 app-shop-product-detail-main-price-range">' . $configStore->currencySymbol;
         if ($product->price_from === $product->price_to) {
             echo $product->price_from;
         } else {
@@ -411,18 +411,20 @@ class Template extends Section
         echo 'top: 0;';
         echo '}';
 
+        echo '@media (min-width: 1280px) {';
         echo '#' . $this->id . ' .app-shop-product-detail-main-form {';
         echo 'position: sticky;';
         echo 'top: 0;';
         echo 'border: 1px solid var(--font-color-8);';
         echo 'padding: 1.5rem;';
+        echo 'width: 240px;';
         echo '}';
-
+        echo '}';
 
         // ------------------------------------------------------------------------------------------------------------- 多款式
         echo '#' . $this->id . ' .style-icon-link {';
         echo 'display: inline-block;';
-        echo 'border: var(--font-color-4) 1px solid;';
+        echo 'border: var(--font-color-6) 1px solid;';
         echo '}';
 
         echo '#' . $this->id . ' .style-icon-link-current {';
@@ -708,13 +710,13 @@ class Template extends Section
                         priceRange = (priceFrom / 100).toFixed(2) + "~" + (priceTo / 100).toFixed(2);
                     }
                 }
-                let $originalPrice = $("#app-shop-product-detail-main-original-price-range");
+                let $originalPrice = $(".app-shop-product-detail-main-original-price-range");
                 if (originalPriceRange) {
                     $originalPrice.html("$" + originalPriceRange).show();
                 } else {
                     $originalPrice.html("").hide();
                 }
-                $("#app-shop-product-detail-main-price-range").html("$" + priceRange);
+                $(".app-shop-product-detail-main-price-range").html("$" + priceRange);
                 // ================================================================================================================= 价格范围
 
                 // 购买，加入购物车按钮是否禁用
@@ -846,20 +848,6 @@ class Template extends Section
                     });
                 }
                 // ================================================================================================================= 更新轮播图
-            }
-
-            function changeQuantity(n) {
-                let $e = $("#app-shop-product-detail-main-quantity");
-                let quantity = $e.val();
-                if (isNaN(quantity)) {
-                    quantity = 1;
-                } else {
-                    quantity = Number(quantity);
-                }
-                quantity += n;
-                quantity = parseInt(quantity);
-                if (quantity < 1) quantity = 1;
-                $e.val(quantity);
             }
 
             function addToCart() {

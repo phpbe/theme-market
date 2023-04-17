@@ -503,16 +503,12 @@ class Template extends Section
         ?>
         <script>
             <?php
-            echo 'let isMobile = ' . ($isMobile ? 'true' : 'false') . ';';
-
             echo 'let product = ' . json_encode($this->page->product) . ';';
             $productItemId = '';
             if ($this->page->product->style === 1) {
                 $productItemId = $this->page->product->items[0]->id;
             }
             echo 'let productItemId = "' . $productItemId . '";';
-
-            echo 'let addToCartUrl = "' . beUrl('Shop.Cart.Add') . '";';
 
             echo 'var swiperSmall = new Swiper("#' . $this->id . ' .swiper-small .swiper", {';
             echo 'direction: "vertical",';
@@ -833,16 +829,17 @@ class Template extends Section
                     for (let i in swiperImages) {
                         swiperImage = swiperImages[i];
                         swiperSmall.appendSlide('<div class="swiper-slide" data-index="' + i + '"><img src="' + swiperImage.url + '" alt=""></div>');
-                        if (isMobile) {
-                            swiperlarge.appendSlide('<div class="swiper-slide"><img src="' + swiperImage.url + '" alt=""></div>');
-                        } else {
-                            swiperlarge.appendSlide('<div class="swiper-slide"><img src="' + swiperImage.url + '" alt="" class="cloudzoom" data-cloudzoom="tintColor:\'#999\', zoomSizeMode:\'image\', zoomImage:\'' + swiperImage.url + '\'"></div>');
-                        }
+
+                        <?php if ($isMobile) { ?>
+                        swiperlarge.appendSlide('<div class="swiper-slide"><img src="' + swiperImage.url + '" alt=""></div>');
+                        <?php } else { ?>
+                        swiperlarge.appendSlide('<div class="swiper-slide"><img src="' + swiperImage.url + '" alt="" class="cloudzoom" data-cloudzoom="tintColor:\'#999\', zoomSizeMode:\'image\', zoomImage:\'' + swiperImage.url + '\'"></div>');
+                        <?php } ?>
                     }
 
-                    if (!isMobile) {
-                        CloudZoom.quickStart();
-                    }
+                    <?php if (!$isMobile) { ?>
+                    CloudZoom.quickStart();
+                    <?php } ?>
 
                     $(".swiper-small .swiper-slide").hover(function () {
                         swiperlarge.slideTo($(this).data("index"));
@@ -851,7 +848,48 @@ class Template extends Section
                 // ================================================================================================================= 更新轮播图
             }
 
+            function changeQuantity(n) {
+                let $e = $("#app-shop-product-detail-main-quantity");
+                let quantity = $e.val();
+                if (isNaN(quantity)) {
+                    quantity = 1;
+                } else {
+                    quantity = Number(quantity);
+                }
+                quantity += n;
+                quantity = parseInt(quantity);
+                if (quantity < 1) quantity = 1;
+                $e.val(quantity);
+            }
+
+            function addToCart() {
+
+            }
+
+
             $(document).ready(function () {
+
+                let defaultProductItem = <?php echo json_encode($this->page->product->items[0]); ?>;
+
+                let match = false;
+                for (let style of product.styles) {
+                    for (let styleValueIndex in style.items) {
+
+                        match = false;
+                        for (let x of defaultProductItem.style_json) {
+                            if (x.name === style.name && x.value === style.items[styleValueIndex].value) {
+                                match = true;
+                                break;
+                            }
+                        }
+
+                        // 选中该款式
+                        if (match) {
+                            filterStyle[style.id] = styleValueIndex;
+                            break;
+                        }
+                    }
+                }
 
                 updateStyles();
 
@@ -868,7 +906,7 @@ class Template extends Section
                     if (quantity < 0) quantity = 1;
 
                     $.ajax({
-                        url: addToCartUrl,
+                        url: "<?php echo beUrl('Shop.Cart.Add'); ?>",
                         data: {
                             "product_id": product.id,
                             "product_item_id": productItemId,
@@ -889,23 +927,6 @@ class Template extends Section
                 });
             });
 
-            function changeQuantity(n) {
-                let $e = $("#app-shop-product-detail-main-quantity");
-                let quantity = $e.val();
-                if (isNaN(quantity)) {
-                    quantity = 1;
-                } else {
-                    quantity = Number(quantity);
-                }
-                quantity += n;
-                quantity = parseInt(quantity);
-                if (quantity < 1) quantity = 1;
-                $e.val(quantity);
-            }
-
-            function addToCart() {
-
-            }
         </script>
         <?php
     }

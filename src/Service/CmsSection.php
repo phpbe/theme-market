@@ -139,18 +139,7 @@ class CmsSection
 
         $html .= '#' . $section->id . ' .' . $class . '-item-image {';
         $html .= 'position: relative;';
-        $html .= '}';
-
-        $html .= '#' . $section->id . ' .' . $class . '-item-image:after {';
-        $html .= 'position: absolute;';
-        $html .= 'content: \'\';';
-        $html .= 'left: 0;';
-        $html .= 'top: 0;';
-        $html .= 'width: 100%;';
-        $html .= 'height: 100%;';
-        $html .= 'background: #000;';
-        $html .= 'opacity: .03;';
-        $html .= 'pointer-events: none;';
+        $html .= 'overflow: hidden;';
         $html .= '}';
 
         $html .= '#' . $section->id . ' .' . $class . '-item-date {';
@@ -162,33 +151,23 @@ class CmsSection
         $html .= 'border-radius: 4px;';
         $html .= '}';
 
-
         $html .= '#' . $section->id . ' .' . $class . '-item-image a {';
         $html .= 'display: block;';
         $html .= 'position: relative;';
-        $html .= 'overflow: hidden;';
-
+        $html .= 'background-size: cover;';
+        $html .= 'background-position: center;';
         $configArticle = Be::getConfig('App.Cms.Article');
         $html .= 'aspect-ratio: ' . $configArticle->imageAspectRatio . ';';
         $html .= '}';
 
-        $html .= '#' . $section->id . ' .' . $class . '-item-image img {';
-        $html .= 'display: block;';
-        $html .= 'position: absolute;';
-        $html .= 'left: 0;';
-        $html .= 'right: 0;';
-        $html .= 'top: 0;';
-        $html .= 'bottom: 0;';
-        $html .= 'margin: auto;';
-        $html .= 'max-width: 100%;';
-        $html .= 'max-height: 100%;';
-        $html .= 'transition: all .3s;';
-        $html .= '}';
-
-        $html .= '#' . $section->id . ' .' . $class . '-item-image img:hover  {';
+        $html .= '#' . $section->id . ' .' . $class . '-item-image a:hover  {';
         $html .= 'transform: scale(1.05);';
         $html .= '}';
-        
+
+        $html .= '#' . $section->id . ' .' . $class . '-item-image a span {';
+        $html .= 'display: none;';
+        $html .= '}';
+
         $html .= '</style>';
 
         $html .= '<div class="' . $class . '">';
@@ -206,20 +185,21 @@ class CmsSection
 
         $isMobile = \Be\Be::getRequest()->isMobile();
         foreach ($articles as $article) {
-            $html .= '<div class="'.$class.'-item">';
+            $html .= '<div class="' . $class . '-item">';
 
             if ($article->image === '') {
                 $article->image = Be::getProperty('App.Cms')->getWwwUrl() . '/article/images/no-image.jpg';
             }
 
             $html .= '<div class="be-ta-center ' . $class . '-item-image">';
-            $html .= '<a href="' . beUrl('Cms.Article.detail', ['id'=> $article->id]) . '"';
+            $html .= '<a href="' . beUrl('Cms.Article.detail', ['id' => $article->id]) . '"';
             if (!$isMobile) {
                 $html .= ' target="_blank"';
             }
-            $html .= '>';
+            $html .= ' style="background-image:url(\'' . $article->image . '\')">';
 
-            $html .= '<img src="' . $article->image . '" alt="' . htmlspecialchars($article->title) . '">';
+            $html .= '<span>' . $article->title . '</span>';
+            //$html .= '<img src="' . $article->image . '" alt="' . htmlspecialchars($article->title) . '">';
 
             $html .= '</a>';
 
@@ -236,7 +216,7 @@ class CmsSection
 
 
             $html .= '<div class="be-mt-100 be-ta-center">';
-            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Cms.Article.detail', ['id'=> $article->id]) . '"';
+            $html .= '<a class="be-d-block be-t-ellipsis" href="' . beUrl('Cms.Article.detail', ['id' => $article->id]) . '"';
             if (!$isMobile) {
                 $html .= ' target="_blank"';
             }
@@ -307,7 +287,7 @@ class CmsSection
 
             $html .= '<div class="article-image">';
             $html .= '<a class="be-d-inline-block" href="';
-            $html .= beUrl('Cms.Article.detail', ['id'=> $article->id]);
+            $html .= beUrl('Cms.Article.detail', ['id' => $article->id]);
             $html .= '" title="';
             $html .= $article->title;
             $html .= '"';
@@ -330,7 +310,7 @@ class CmsSection
 
             $html .= '<div class="be-mt-100">';
             $html .= '<a class="be-fs-125 be-fw-bold be-lh-200" href="';
-            $html .= beUrl('Cms.Article.detail', ['id'=> $article->id]);
+            $html .= beUrl('Cms.Article.detail', ['id' => $article->id]);
             $html .= '" title="';
             $html .= $article->title;
             $html .= '"';
@@ -357,7 +337,7 @@ class CmsSection
 
             $html .= '<div class="be-mt-100 read-more">';
             $html .= '<a href="';
-            $html .= beUrl('Cms.Article.detail', ['id'=> $article->id]);
+            $html .= beUrl('Cms.Article.detail', ['id' => $article->id]);
             $html .= '" title="';
             $html .= $article->title;
             $html .= '"';
@@ -389,9 +369,9 @@ class CmsSection
             $html .= '<li>';
             if ($page > 1) {
                 $params['page'] = $page - 1;
-                $html .= '<a href="' . beUrl($route, $params) . '">' . beLang('App.Cms', 'PAGINATION.PREVIOUS'). '</a>';
+                $html .= '<a href="' . beUrl($route, $params) . '">' . beLang('App.Cms', 'PAGINATION.PREVIOUS') . '</a>';
             } else {
-                $html .= '<span>' . beLang('App.Cms', 'PAGINATION.PREVIOUS'). '</span>';
+                $html .= '<span>' . beLang('App.Cms', 'PAGINATION.PREVIOUS') . '</span>';
             }
             $html .= '</li>';
 
@@ -436,9 +416,9 @@ class CmsSection
             $html .= '<li>';
             if ($page < $pages) {
                 $params['page'] = $page + 1;
-                $html .= '<a href="' . beUrl($route, $params) . '">' . beLang('App.Cms', 'PAGINATION.NEXT'). '</a>';
+                $html .= '<a href="' . beUrl($route, $params) . '">' . beLang('App.Cms', 'PAGINATION.NEXT') . '</a>';
             } else {
-                $html .= '<span>' . beLang('App.Cms', 'PAGINATION.NEXT'). '</span>';
+                $html .= '<span>' . beLang('App.Cms', 'PAGINATION.NEXT') . '</span>';
             }
             $html .= '</li>';
             $html .= '</ul>';
@@ -543,7 +523,6 @@ class CmsSection
 
         return $html;
     }
-
 
 
     private function makeArticlesSectionPublicCss(object $section, string $class)
@@ -679,8 +658,6 @@ class CmsSection
         $html .= 'transform: translateY(-40px);';
         $html .= 'opacity: 0;';
         $html .= '}';
-
-
 
 
         $html .= '#' . $section->id . ' .' . $class . '-article-image-actions a:hover {';

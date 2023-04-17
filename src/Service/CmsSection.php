@@ -141,6 +141,18 @@ class CmsSection
         $html .= 'position: relative;';
         $html .= '}';
 
+        $html .= '#' . $section->id . ' .' . $class . '-item-image:after {';
+        $html .= 'position: absolute;';
+        $html .= 'content: \'\';';
+        $html .= 'left: 0;';
+        $html .= 'top: 0;';
+        $html .= 'width: 100%;';
+        $html .= 'height: 100%;';
+        $html .= 'background: #000;';
+        $html .= 'opacity: .03;';
+        $html .= 'pointer-events: none;';
+        $html .= '}';
+
         $html .= '#' . $section->id . ' .' . $class . '-item-date {';
         $html .= 'position: absolute;';
         $html .= 'top: 12px;';
@@ -153,13 +165,23 @@ class CmsSection
 
         $html .= '#' . $section->id . ' .' . $class . '-item-image a {';
         $html .= 'display: block;';
-        $html .= 'overflow:hidden;';
-        $html .= '}';
+        $html .= 'position: relative;';
+        $html .= 'overflow: hidden;';
 
+        $configArticle = Be::getConfig('App.Cms.Article');
+        $html .= 'aspect-ratio: ' . $configArticle->imageAspectRatio . ';';
+        $html .= '}';
 
         $html .= '#' . $section->id . ' .' . $class . '-item-image img {';
         $html .= 'display: block;';
-        $html .= 'width: 100%;';
+        $html .= 'position: absolute;';
+        $html .= 'left: 0;';
+        $html .= 'right: 0;';
+        $html .= 'top: 0;';
+        $html .= 'bottom: 0;';
+        $html .= 'margin: auto;';
+        $html .= 'max-width: 100%;';
+        $html .= 'max-height: 100%;';
         $html .= 'transition: all .3s;';
         $html .= '}';
 

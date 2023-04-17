@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Product\Search;
 
 /**
- * @BeConfig("店熵商城-搜索分页商品", icon="bi-search", ordering="99.0110")
+ * @BeConfig("店熵商城-搜索结果", icon="bi-search", ordering="10110")
  */
 class Config
 {

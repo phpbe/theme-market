@@ -65,9 +65,6 @@ a:active, a:hover {
     width: 60px;
     height: 60px;
     z-index: 1050;
-    background-color: rgba(255, 255, 255, .8);
-    border-color: var(--major-color) transparent transparent transparent;
-    border-radius: 10px;
     display: none;
 }
 
@@ -85,10 +82,7 @@ a:active, a:hover {
     -webkit-animation: ajaxLoading 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
     -o-animation: ajaxLoading 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
     animation: ajaxLoading 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
-    /*
-    取 theme 主色调
-    border-color: #000 transparent transparent transparent;
-    */
+    border-color: var(--major-color) transparent transparent transparent;
 }
 
 #ajax-loader div:nth-child(1) {

@@ -2,8 +2,7 @@
 
 namespace Be\Theme\Market\Config\Page\Cms\Article;
 
-
-class latest
+class tag
 {
 
     public int $west = 25;
@@ -24,10 +23,8 @@ class latest
 
     public array $centerSections = [
         [
-            'name' => 'Theme.Market.App.Cms.Article.Latest',
+            'name' => 'Theme.Market.App.Cms.Article.Tag',
         ],
     ];
-
-
 
 }

@@ -2,10 +2,8 @@
 
 namespace Be\Theme\Market\Config\Page\Cms\Article;
 
-
-class latest
+class search
 {
-
     public int $west = 25;
     public int $center = 75;
     public int $east = 0;
@@ -24,10 +22,8 @@ class latest
 
     public array $centerSections = [
         [
-            'name' => 'Theme.Market.App.Cms.Article.Latest',
+            'name' => 'Theme.Market.App.Cms.Article.Search',
         ],
     ];
-
-
 
 }

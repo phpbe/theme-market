@@ -850,11 +850,6 @@ class Template extends Section
                 // ================================================================================================================= 更新轮播图
             }
 
-            function addToCart() {
-
-            }
-
-
             $(document).ready(function () {
 
                 <?php if ($this->page->product->style === 2) { ?>
@@ -904,7 +899,7 @@ class Template extends Section
                         type: "POST",
                         success: function (json) {
                             if (json.success) {
-                                DrawerCart.load();
+                                //DrawerCart.load();
                                 DrawerCart.show();
                             }
                         },

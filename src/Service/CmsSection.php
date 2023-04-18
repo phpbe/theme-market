@@ -187,8 +187,9 @@ class CmsSection
         foreach ($articles as $article) {
             $html .= '<div class="' . $class . '-item">';
 
-            if ($article->image === '') {
-                $article->image = Be::getProperty('App.Cms')->getWwwUrl() . '/article/images/no-image.jpg';
+            $image = $article->image;
+            if ($image === '') {
+                $image = Be::getProperty('App.Cms')->getWwwUrl() . '/article/images/no-image.jpg';
             }
 
             $html .= '<div class="be-ta-center ' . $class . '-item-image">';
@@ -196,10 +197,10 @@ class CmsSection
             if (!$isMobile) {
                 $html .= ' target="_blank"';
             }
-            $html .= ' style="background-image:url(\'' . $article->image . '\')">';
+            $html .= ' style="background-image:url(\'' . $image . '\')">';
 
-            $html .= '<span>' . $article->title . '</span>';
             //$html .= '<img src="' . $article->image . '" alt="' . htmlspecialchars($article->title) . '">';
+            $html .= '<span>' . $article->title . '</span>';
 
             $html .= '</a>';
 
@@ -254,10 +255,22 @@ class CmsSection
         $html .= $section->getCssPadding($class);
         $html .= $section->getCssMargin($class);
 
+
+        $html .= '#' . $section->id . ' .' . $class . ' .article-image a {';
+        $html .= 'display: block;';
+        $html .= 'background-size: cover;';
+        $html .= 'background-position: center;';
+        $configArticle = Be::getConfig('App.Cms.Article');
+        $html .= 'aspect-ratio: ' . $configArticle->imageAspectRatio . ';';
+        $html .= '}';
+
         $html .= '#' . $section->id . ' .' . $class . ' .article-image img {';
         $html .= 'width: 100%;';
         $html .= '}';
 
+        $html .= '#' . $section->id . ' .' . $class . ' .article-image a span {';
+        $html .= 'display: none;';
+        $html .= '}';
 
         $html .= '#' . $section->id . ' .' . $class . ' .read-more a {';
         $html .= 'color: var(--major-color);';
@@ -285,25 +298,21 @@ class CmsSection
             }
             $html .= '>';
 
+            $image = $article->image;
+            if ($image === '') {
+                $image = $noImage;
+            }
+
             $html .= '<div class="article-image">';
-            $html .= '<a class="be-d-inline-block" href="';
-            $html .= beUrl('Cms.Article.detail', ['id' => $article->id]);
-            $html .= '" title="';
-            $html .= $article->title;
-            $html .= '"';
+            $html .= '<a href="' . beUrl('Cms.Article.detail', ['id' => $article->id]) . '" title="' . $article->title . '"';
             if (!$isMobile) {
                 $html .= ' target="_blank"';
             }
-            $html .= '>';
-            $html .= '<img src="';
-            if ($article->image === '') {
-                $html .= $noImage;
-            } else {
-                $html .= $article->image;
-            }
-            $html .= '" alt="';
-            $html .= $article->title;
-            $html .= '">';
+            $html .= ' style="background-image:url(\'' . $image . '\')">';
+
+            //$html .= '<img src="' . $image . '" alt="' . htmlspecialchars($article->title) . '">';
+            $html .= '<span>' . $article->title . '</span>';
+
             $html .= '</a>';
             $html .= '</div>';
 

@@ -14,6 +14,13 @@ class Config
     public int $enable = 1;
 
     /**
+     * @BeConfigItem("背景颜色",
+     *     driver = "FormItemColorPicker"
+     * )
+     */
+    public string $backgroundColor = '';
+
+    /**
      * @BeConfigItem("内边距 （手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS padding 语法）"

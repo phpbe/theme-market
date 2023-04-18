@@ -19,8 +19,16 @@ class Template extends Section
         }
 
         echo '<style type="text/css">';
+        echo $this->getCssBackgroundColor('app-cms-article-detail');
         echo $this->getCssPadding('app-cms-article-detail');
         echo $this->getCssMargin('app-cms-article-detail');
+
+        echo '#' . $this->id . ' .app-cms-article-detail-image {';
+        echo 'background-size: cover;';
+        echo 'background-position: center;';
+        $configArticle = Be::getConfig('App.Cms.Article');
+        echo 'aspect-ratio: ' . $configArticle->imageAspectRatio . ';';
+        echo '}';
 
         echo '#' . $this->id . ' .app-cms-article-detail img {';
         echo 'max-width: 100%;';
@@ -33,24 +41,18 @@ class Template extends Section
             echo '<div class="be-container">';
         }
 
-
-        $noImage = \Be\Be::getProperty('App.Cms')->getWwwUrl() . '/images/article/no-image.jpg';
-        echo '<img src="';
-        if ($this->page->article->image === '') {
-            echo $noImage;
-        } else {
-            echo $this->page->article->image;
+        $image = $this->page->article->image;
+        if ($image === '') {
+            $image = \Be\Be::getProperty('App.Cms')->getWwwUrl() . '/images/article/no-image.jpg';
         }
-        echo '" alt="';
-        echo $this->page->article->title;
-        echo '">';
 
+        echo '<div class="app-cms-article-detail-image" style="background-image:url(\'' . $image . '\')"></div>';
 
         echo '<h1 class="be-mt-100 be-h2">';
         echo $this->page->article->title;
         echo '</h1>';
-
         ?>
+
         <div class="be-mt-100 be-c-font-6">
             <span class="be-ml-100"><?php echo beLang('App.Cms', 'ARTICLE.PUBLISH_TIME') . ': '. date(beLang('App.Cms', 'ARTICLE.PUBLISH_TIME_YYYY_MM_DD'), strtotime($this->page->article->publish_time)); ?></span>
             <span class="be-ml-100"><?php echo beLang('App.Cms', 'ARTICLE.HITS') . ': '. $this->page->article->hits; ?></span>

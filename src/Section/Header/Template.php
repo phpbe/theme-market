@@ -776,12 +776,12 @@ class Template extends Section
 
         echo '<script>';
         echo 'const DRAWER_USER_LOGIN_CHECK_URL = "' . beUrl('Shop.User.loginCheck') . '";';
-        echo 'const DRAWER_USER_DASHBOARD_URL = ' . beUrl('Shop.UserCenter.dashboard') . ';';
+        echo 'const DRAWER_USER_DASHBOARD_URL = "' . beUrl('Shop.UserCenter.dashboard') . '";';
         echo '</script>';
         echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-user.js"></script>';
 
         echo '<script>';
-        echo 'const DRAWER_CART_LOAD_URL = ' . beUrl('Shop.Cart.getProducts') . ';';
+        echo 'const DRAWER_CART_LOAD_URL = "' . beUrl('Shop.Cart.getProducts') . '";';
         echo 'const DRAWER_CART_ADD_URL = "'.beUrl('Shop.Cart.add').'";';
         echo 'const DRAWER_CART_REMOVE_URL = "'.beUrl('Shop.Cart.remove').'";';
         echo 'const DRAWER_CART_CHANGE_URL = "'.beUrl('Shop.Cart.change').'";';

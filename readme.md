@@ -41,6 +41,8 @@
 * 10201 - 店熵商城-分类商品列表 - App.Shop.Category.Products
 * 10202 - 店熵商城-分类TopN - App.Shop.Category.TopN
 * 10203 - 店熵商城-分类TopN边栏 - App.Shop.Category.TopNSide
+* 10204 - 店熵商城-分类菜单边栏 - App.Shop.Category.MenuSide
+* 10205 - 店熵商城-分类子菜单边栏 - App.Shop.Category.SubMenuSide
 
 ### 2xxxx CMS相关部件
 * 20101 - CMS-首页文章列表 - App.Cms.Home

@@ -12,7 +12,7 @@ class products
 
     public array $westSections = [
         [
-            'name' => 'Theme.Market.App.Shop.Category.CategoriesNSide',
+            'name' => 'Theme.Market.App.Shop.Category.SubMenuSide',
         ],
         [
             'name' => 'Theme.Market.App.Shop.Product.TopSalesTopNSide',

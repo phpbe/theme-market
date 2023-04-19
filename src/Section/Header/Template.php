@@ -95,9 +95,9 @@ class Template extends Section
             if ($hasSubItem) {
                 foreach ($item->subItems as $subItem) {
                     if (($subItem->route === 'Shop.Category.products' && isset($subItem->params['id']))) {
-                        echo '<option value="' . $subItem->params['id'] . '">  ' . $subItem->label . '</option>';
+                        echo '<option value="' . $subItem->params['id'] . '">|__ ' . $subItem->label . '</option>';
                     } else {
-                        echo '<option value="" disabled>  ' . $subItem->label . '</option>';
+                        echo '<option value="" disabled>|__ ' . $subItem->label . '</option>';
                     }
                 }
             }
@@ -771,27 +771,25 @@ class Template extends Section
     {
         $wwwUrl = \Be\Be::getProperty('Theme.Market')->getWwwUrl();
         $configStore = \Be\Be::getConfig('App.Shop.Store');
-        ?>
-        <script src="<?php echo $wwwUrl; ?>/js/header/drawer-menu.js"></script>
 
-        <script>
-            const DRAWER_USER_LOGIN_CHECK_URL = "<?php echo beUrl('Shop.User.loginCheck'); ?>";
-            const DRAWER_USER_DASHBOARD_URL = "<?php echo beUrl('Shop.UserCenter.dashboard'); ?>";
-        </script>
-        <script src="<?php echo $wwwUrl; ?>/js/header/drawer-user.js"></script>
+        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-menu.js"></script>';
 
-        <script>
-            const DRAWER_CART_LOAD_URL = "<?php echo beUrl('Shop.Cart.getProducts'); ?>";
-            const DRAWER_CART_ADD_URL = "<?php echo beUrl('Shop.Cart.add'); ?>";
-            const DRAWER_CART_REMOVE_URL = "<?php echo beUrl('Shop.Cart.remove'); ?>";
-            const DRAWER_CART_CHANGE_URL = "<?php echo beUrl('Shop.Cart.change'); ?>";
-            const DRAWER_CART_CURRENCY = "<?php echo $configStore->currency; ?>";
-            const DRAWER_CART_CURRENCY_SYMBOL = "<?php echo $configStore->currencySymbol; ?>";
-        </script>
-        <script src="<?php echo $wwwUrl; ?>/js/header/drawer-cart.js"></script>
-        <?php
+        echo '<script>';
+        echo 'const DRAWER_USER_LOGIN_CHECK_URL = "' . beUrl('Shop.User.loginCheck') . '";';
+        echo 'const DRAWER_USER_DASHBOARD_URL = ' . beUrl('Shop.UserCenter.dashboard') . ';';
+        echo '</script>';
+        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-user.js"></script>';
+
+        echo '<script>';
+        echo 'const DRAWER_CART_LOAD_URL = ' . beUrl('Shop.Cart.getProducts') . ';';
+        echo 'const DRAWER_CART_ADD_URL = "'.beUrl('Shop.Cart.add').'";';
+        echo 'const DRAWER_CART_REMOVE_URL = "'.beUrl('Shop.Cart.remove').'";';
+        echo 'const DRAWER_CART_CHANGE_URL = "'.beUrl('Shop.Cart.change').'";';
+        echo 'const DRAWER_CART_CURRENCY = "' . $configStore->currency . '";';
+        echo 'const DRAWER_CART_CURRENCY_SYMBOL = "' . $configStore->currencySymbol . '";';
+        echo '</script>';
+        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-cart.js"></script>';
     }
-
 
 
 

@@ -11,7 +11,7 @@ class topSales
 
     public array $westSections = [
         [
-            'name' => 'Theme.Market.App.Shop.Category.TopNSide',
+            'name' => 'Theme.Market.App.Shop.Category.MenuSide',
         ],
         [
             'name' => 'Theme.Market.App.Shop.Product.TopSalesTopNSide',

@@ -514,7 +514,7 @@ class Template extends Section
 
         echo '<script src="' . $wwwUrl . '/lib/swiper/8.3.2/swiper-bundle.min.js"></script>';
 
-        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/product/detail.js"></script>';
+        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/product/detail.js?v=20230419"></script>';
     }
 
 }

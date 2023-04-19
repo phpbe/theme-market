@@ -318,10 +318,10 @@ class Template extends Section
     {
         $configProduct = Be::getConfig('App.Shop.Product');
         $isMobile = Be::getRequest()->isMobile();
-        $wwwUrl = Be::getProperty('App.Shop')->getWwwUrl();
 
         if (!$isMobile) {
-            echo '<link href="' . $wwwUrl . '/lib/cloudzoom/cloudzoom.css" type="text/css" rel="stylesheet" />';
+            $wwwUrl = Be::getProperty('Theme.Market')->getWwwUrl();
+            echo '<link rel="stylesheet" href="' . $wwwUrl . '/lib/cloudzoom/cloudzoom.css" />';
         }
 
         echo '<style type="text/css">';

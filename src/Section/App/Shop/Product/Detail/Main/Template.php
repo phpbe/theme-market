@@ -158,13 +158,6 @@ class Template extends Section
         if ($this->position === 'middle') echo '</div>';
         echo '</div>';
 
-        $key = 'App:Shop:swiper';
-        if (!Be::hasContext($key)) {
-            $wwwUrl = Be::getProperty('App.Shop')->getWwwUrl();
-            echo '<link rel="stylesheet" href="' . $wwwUrl . '/lib/swiper/8.3.2/swiper-bundle.min.css">';
-            echo '<script src="' . $wwwUrl . '/lib/swiper/8.3.2/swiper-bundle.min.js"></script>';
-        }
-
         $this->js();
     }
 
@@ -316,15 +309,17 @@ class Template extends Section
 
     private function css()
     {
+        $wwwUrl = Be::getProperty('Theme.Market')->getWwwUrl();
         $configProduct = Be::getConfig('App.Shop.Product');
         $isMobile = Be::getRequest()->isMobile();
 
         if (!$isMobile) {
-            $wwwUrl = Be::getProperty('Theme.Market')->getWwwUrl();
             echo '<link rel="stylesheet" href="' . $wwwUrl . '/lib/cloudzoom/cloudzoom.css" />';
         }
 
-        echo '<style type="text/css">';
+        echo '<link rel="stylesheet" href="' . $wwwUrl . '/lib/swiper/8.3.2/swiper-bundle.min.css">';
+
+        echo '<style rel="stylesheet">';
 
         echo $this->getCssBackgroundColor('app-shop-product-detail-main');
         echo $this->getCssPadding('app-shop-product-detail-main');
@@ -516,6 +511,8 @@ class Template extends Section
         if (!$isMobile) {
             echo '<script type="text/javascript" src="' . $wwwUrl . '/lib/cloudzoom/cloudzoom.js"></script>';
         }
+
+        echo '<script src="' . $wwwUrl . '/lib/swiper/8.3.2/swiper-bundle.min.js"></script>';
 
         echo '<script type="text/javascript" src="' . $wwwUrl . '/js/product/detail.js"></script>';
     }

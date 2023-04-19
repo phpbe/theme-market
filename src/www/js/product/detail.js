@@ -32,7 +32,7 @@ $(".swiper-small .swiper-slide").hover(function(){
     swiperlarge.slideTo($(this).data("index"));
 });
 
-if (APP_SHOP_PRODUCT_DETAIL_SECTION_IS_MOBILE) {
+if (!APP_SHOP_PRODUCT_DETAIL_SECTION_IS_MOBILE) {
     CloudZoom.quickStart();
 }
 
@@ -331,7 +331,7 @@ function updateStyles() {
             }
         }
 
-        if (APP_SHOP_PRODUCT_DETAIL_SECTION_IS_MOBILE) {
+        if (!APP_SHOP_PRODUCT_DETAIL_SECTION_IS_MOBILE) {
             CloudZoom.quickStart();
         }
 

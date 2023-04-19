@@ -788,7 +788,7 @@ class Template extends Section
         echo 'const DRAWER_CART_CURRENCY = "' . $configStore->currency . '";';
         echo 'const DRAWER_CART_CURRENCY_SYMBOL = "' . $configStore->currencySymbol . '";';
         echo '</script>';
-        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-cart.js"></script>';
+        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-cart.js?v=20230419001"></script>';
     }
 
 

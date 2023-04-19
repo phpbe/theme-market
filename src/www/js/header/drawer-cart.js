@@ -195,3 +195,6 @@ var DrawerCart = {
 
 };
 
+$(function () {
+    DrawerCart.load();
+});

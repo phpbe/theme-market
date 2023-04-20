@@ -2,6 +2,7 @@
 
 namespace Be\Theme\Market\Section\HeaderToolbar;
 
+use Be\Be;
 use Be\Theme\Section;
 
 class Template extends Section
@@ -65,18 +66,22 @@ class Template extends Section
         echo '</div>';
 
         echo '<div class="be-col-0 be-lg-col-auto">';
-        echo '<a href="'. beUrl('Shop.UserCenter.dashboard') .'"><i class="bi-person-fill"></i> My Account</a>';
-        echo '</div>';
-        echo '<div class="be-col-0 be-lg-col-auto">';
         echo '<a href="'. beUrl('Shop.UserFavorite.favorites') .'"><i class="bi-suit-heart-fill"></i> My Wishlist</a>';
         echo '</div>';
         echo '<div class="be-col-0 be-lg-col-auto">';
         echo '<a href="'. beUrl('Shop.Cart.index') .'"><i class="bi-cart-check-fill"></i> Checkout</a>';
         echo '</div>';
-        echo '<div class="be-col-auto">';
-        echo '<a href="'. beUrl('Shop.User.login') .'"><i class="bi-lock-fill"></i> Login</a>';
-        echo '</div>';
 
+        $my = Be::getUser();
+        if ($my->isGuest()) {
+            echo '<div class="be-col-auto">';
+            echo '<a href="'. beUrl('Shop.User.login') .'"><i class="bi-lock-fill"></i> Login</a>';
+            echo '</div>';
+        } else {
+            echo '<div class="be-col-auto">';
+            echo '<a href="'. beUrl('Shop.UserCenter.dashboard') .'"><i class="bi-person-fill"></i> My Account</a>';
+            echo '</div>';
+        }
 
         echo '</div>';
         echo '</div>';

@@ -15,15 +15,6 @@ class Config
     public int $enable = 1;
 
     /**
-     * @BeConfigItem("分页太小?",,
-     *     description = "分页为0时取系统配置",
-     *     driver = "FormItemSlider",
-     *     ui="return [':min' => 0, ':max' => 100];"
-     * )
-     */
-    public int $pageSize = 0;
-
-    /**
      * @BeConfigItem("宽度",
      *     description="位于middle时有效",
      *     driver="FormItemSelect",
@@ -38,6 +29,24 @@ class Config
      * )
      */
     public string $backgroundColor = '';
+
+    /**
+     * @BeConfigItem("分页太小?",,
+     *     description = "分页为0时取系统配置",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 0, ':max' => 100];"
+     * )
+     */
+    public int $pageSize = 0;
+
+    /**
+     * @BeConfigItem("展示多少列?",
+     *     description = "仅对电脑端有效",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 3, ':max' => 6];"
+     * )
+     */
+    public int $cols = 3;
 
     /**
      * @BeConfigItem("内边距（手机端）",
@@ -64,83 +73,49 @@ class Config
     public string $paddingDesktop = '0';
 
     /**
-     * @BeConfigItem("外边距（手机端）",
+     * @BeConfigItem("外边距 （手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $marginMobile = '1rem 0';
+    public string $marginMobile = '0';
 
     /**
-     * @BeConfigItem("外边距（平板端）",
+     * @BeConfigItem("外边距 （平板端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $marginTablet = '1.5rem 0';
+    public string $marginTablet = '0';
 
     /**
-     * @BeConfigItem("外边距（电脑端）",
+     * @BeConfigItem("外边距 （电脑端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
      */
-    public string $marginDesktop = '2rem 0';
+    public string $marginDesktop = '0';
 
     /**
-     * @BeConfigItem("子项 - 背景颜色",
-     *     driver="FormItemColorPicker"
+     * @BeConfigItem("间距（手机端）",
+     *     driver = "FormItemInput"
      * )
      */
-    public string $itemBackgroundColor = '#fff';
+    public string $spacingMobile = '1.5rem';
 
     /**
-     * @BeConfigItem("子项 - 内边距（手机端）",
-     *     driver = "FormItemInput",
-     *     description = "上右下左（CSS padding 语法）"
+     * @BeConfigItem("间距（平板端）",
+     *     driver = "FormItemInput"
      * )
      */
-    public string $itemPaddingMobile = '1rem';
+    public string $spacingTablet = '1.75rem';
 
     /**
-     * @BeConfigItem("子项 - 内边距（平板端）",
-     *     driver = "FormItemInput",
-     *     description = "上右下左（CSS padding 语法）"
+     * @BeConfigItem("间距（电脑端）",
+     *     driver = "FormItemInput"
      * )
      */
-    public string $itemPaddingTablet = '1.5rem';
-
-    /**
-     * @BeConfigItem("子项 - 内边距（电脑端）",
-     *     driver = "FormItemInput",
-     *     description = "上右下左（CSS padding 语法）"
-     * )
-     */
-    public string $itemPaddingDesktop = '2rem';
-
-    /**
-     * @BeConfigItem("子项 - 外边距（手机端）",
-     *     driver = "FormItemInput",
-     *     description = "上右下左（CSS margin 语法）"
-     * )
-     */
-    public string $itemMarginMobile = '1rem 0';
-
-    /**
-     * @BeConfigItem("子项 - 外边距（平板端）",
-     *     driver = "FormItemInput",
-     *     description = "上右下左（CSS margin 语法）"
-     * )
-     */
-    public string $itemMarginTablet = '1.5rem 0';
-
-    /**
-     * @BeConfigItem("子项 - 外边距（电脑端）",
-     *     driver = "FormItemInput",
-     *     description = "上右下左（CSS margin 语法）"
-     * )
-     */
-    public string $itemMarginDesktop = '2rem 0';
+    public string $spacingDesktop = '2rem';
 
 
 }

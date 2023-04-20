@@ -183,13 +183,14 @@ class CmsSection
 
         $html .= '<div class="' . $class . '-items">';
 
+        $noImage = Be::getProperty('App.Cms')->getWwwUrl() . '/article/images/no-image.jpg';
         $isMobile = \Be\Be::getRequest()->isMobile();
         foreach ($articles as $article) {
             $html .= '<div class="' . $class . '-item">';
 
             $image = $article->image;
             if ($image === '') {
-                $image = Be::getProperty('App.Cms')->getWwwUrl() . '/article/images/no-image.jpg';
+                $image = $noImage;
             }
 
             $html .= '<div class="be-ta-center ' . $class . '-item-image">';
@@ -255,6 +256,36 @@ class CmsSection
         $html .= $section->getCssPadding($class);
         $html .= $section->getCssMargin($class);
 
+        if ($section->config->cols > 1) {
+
+            $cols = $section->config->cols;
+            if ($cols < 1) {
+                $cols = 1;
+            } elseif ($section->config->cols > 3) {
+                $cols = 3;
+            }
+
+            $itemWidthMobile = '100%';
+            $itemWidthTablet = $cols > 1 ? '50%' : '100%';
+            if ($cols > 2) {
+                $itemWidthDesktop = (100 / 3) . '%';
+            } elseif ($cols === 2) {
+                $itemWidthDesktop = '50%';
+            } else {
+                $itemWidthDesktop = '100%';
+            }
+            $html .= $section->getCssSpacing($class . '-items', $class .'-item', $itemWidthMobile, $itemWidthTablet, $itemWidthDesktop);
+
+        } else {
+            $html .= '#' . $section->id . ' .' . $class . '-item {';
+            $html .= 'margin-top: 3rem;';
+            $html .= '}';
+
+            $html .= '#' . $section->id . ' .' . $class . '-item:first-child {';
+            $html .= 'margin-top: 0;';
+            $html .= '}';
+        }
+
 
         $html .= '#' . $section->id . ' .' . $class . ' .article-image a {';
         $html .= 'display: block;';
@@ -287,16 +318,14 @@ class CmsSection
             $html .= '<div class="be-container">';
         }
 
-        $noImage = \Be\Be::getProperty('App.Cms')->getWwwUrl() . '/images/article/no-image.jpg';
+        $html .= '<div class="' . $class . '-items">';
 
+        $noImage = \Be\Be::getProperty('App.Cms')->getWwwUrl() . '/images/article/no-image.jpg';
         $isMobile = \Be\Be::getRequest()->isMobile();
         $i = 0;
         foreach ($result['rows'] as $article) {
-            $html .= '<div';
-            if ($i > 0) {
-                $html .= ' class="be-mt-300"';
-            }
-            $html .= '>';
+
+            $html .= '<div class="' . $class . '-item">';
 
             $image = $article->image;
             if ($image === '') {
@@ -360,6 +389,8 @@ class CmsSection
             $html .= '</div>'; // -item
             $i++;
         }
+
+        $html .= '</div>';
 
         $total = $result['total'];
         $pageSize = $result['pageSize'];

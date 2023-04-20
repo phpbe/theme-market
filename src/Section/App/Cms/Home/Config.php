@@ -29,6 +29,15 @@ class Config
     public int $pageSize = 10;
 
     /**
+     * @BeConfigItem("展示多少列?",
+     *     description = "仅对电脑端有效",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 3, ':max' => 6];"
+     * )
+     */
+    public int $cols = 3;
+
+    /**
      * @BeConfigItem("内边距 （手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS padding 语法）"
@@ -75,5 +84,26 @@ class Config
      * )
      */
     public string $marginDesktop = '0';
+
+    /**
+     * @BeConfigItem("间距（手机端）",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $spacingMobile = '1.5rem';
+
+    /**
+     * @BeConfigItem("间距（平板端）",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $spacingTablet = '1.75rem';
+
+    /**
+     * @BeConfigItem("间距（电脑端）",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $spacingDesktop = '2rem';
 
 }

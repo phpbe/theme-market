@@ -22,7 +22,7 @@
     <script src="<?php echo $themeWwwUrl; ?>/lib/jquery/jquery-1.12.4.min.js"></script>
     <script src="<?php echo $themeWwwUrl; ?>/lib/jquery/jquery.validate-1.19.2.min.js"></script>
 
-    <link rel="stylesheet" href="<?php echo $themeWwwUrl; ?>/ui/be.css?v=20230412" />
+    <link rel="stylesheet" href="<?php echo $themeWwwUrl; ?>/ui/be.css?v=20230420" />
     <link rel="stylesheet" href="https://cdn.phpbe.com/ui/be-icons.css"/>
 
     <style type="text/css">

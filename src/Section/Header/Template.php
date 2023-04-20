@@ -30,7 +30,7 @@ class Template extends Section
         echo '<div class="be-py-200">';
         echo '<div class="be-row">';
 
-        echo '<div class="be-col-24 be-md-col-0">';
+        echo '<div class="be-col-24 be-lg-col-0">';
 
         echo '<div class="be-row">';
         echo '<div class="be-col-auto">';
@@ -58,11 +58,11 @@ class Template extends Section
         echo '</div>';
 
         echo '</div>';
-        echo '<div class="be-col-0 be-md-col-auto">';
+        echo '<div class="be-col-0 be-lg-col-auto">';
         echo '<a href="' . $beUrl . '" class="header-logo"><img src="' . $this->config->logo . '" alt=""></a>';
         echo '</div>';
 
-        echo '<div class="be-col-24 be-md-col">';
+        echo '<div class="be-col-24 be-lg-col">';
 
         // ------------------------------------------------------------------------------------------------------------- 搜索框
         echo '<div class="be-row be-mt-50">';
@@ -126,7 +126,7 @@ class Template extends Section
         echo '</div>';
 
 
-        echo '<div class="be-col-0 be-md-col-auto">';
+        echo '<div class="be-col-0 be-lg-col-auto">';
         echo '<div class="header-toggle-cart be-mt-50">';
 
         echo '<a href="javascript:void(0);" onclick="return DrawerCart.toggle();">';
@@ -141,7 +141,7 @@ class Template extends Section
         echo '</div>';
 
 
-        echo '<div class="be-d-none be-md-d-block">';
+        echo '<div class="be-d-none be-lg-d-block">';
         echo '<div class="be-row">';
         echo '<div class="be-col-auto">';
 

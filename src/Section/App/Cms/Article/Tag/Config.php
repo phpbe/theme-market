@@ -40,6 +40,14 @@ class Config
     public int $pageSize = 0;
 
     /**
+     * @BeConfigItem("最大分页",
+     *     description = "为节约服务器资源，限制分页展示时的最大页码数",
+     *     driver = "FormItemInputNumberInt",
+     * )
+     */
+    public int $maxPages = 100;
+
+    /**
      * @BeConfigItem("展示多少列?",
      *     description = "仅对电脑端有效",
      *     driver = "FormItemSlider",

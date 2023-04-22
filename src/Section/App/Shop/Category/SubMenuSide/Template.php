@@ -37,6 +37,28 @@ class Template extends Section
             }
         }
 
+        if ($menuItem === false) {
+            foreach ($categoryMenuTree as $item) {
+                if (isset($item->subItems) && is_array($item->subItems) && count($item->subItems) > 0) {
+                    foreach ($item->subItems as $subItem) {
+                        if (($subItem->route === 'Shop.Category.products' && isset($subItem->params['id'])) && $categoryId === $subItem->params['id']) {
+                            $menuItem = $item;
+                            $subMenuItems = $item->subItems;
+                            break 2;
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($menuItem === false) {
+            return;
+        }
+
+        if (count($subMenuItems) === 0) {
+            $subMenuItems = $categoryMenuTree;
+        }
+
         $this->css();
 
         echo '<div class="app-shop-category-sub-menu-side">';

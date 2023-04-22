@@ -106,6 +106,16 @@ class ShopSection
         $total = $result['total'];
         $pageSize = $result['pageSize'];
         $pages = ceil($total / $pageSize);
+
+        if (isset($section->config->maxPages) && $section->config->maxPages > 0) {
+            $maxPages = $section->config->maxPages;
+        } else {
+            $maxPages = floor(10000 / $pageSize);
+        }
+        if ($pages > $maxPages) {
+            $pages = $maxPages;
+        }
+
         if ($pages > 1) {
             $page = $result['page'];
             if ($page > $pages) $page = $pages;
@@ -178,7 +188,6 @@ class ShopSection
         if ($section->position === 'middle' && $section->config->width === 'default') {
             $html .= '</div>';
         }
-
         $html .= '</div>';
 
         return $html;
@@ -360,119 +369,27 @@ class ShopSection
         $css .= $section->getCssPadding($class);
         $css .= $section->getCssMargin($class);
 
-        $css .= '#' . $section->id . ' .' . $class . '-products {';
-        $css .= 'display: flex;';
-        $css .= 'flex-wrap: wrap;';
-        //$css .= 'overflow: hidden;';
-        $css .= '}';
 
-        $css .= '#' . $section->id . ' .' . $class . '-product {';
-        $css .= 'flex: 0 1 auto;';
-        //$css .= 'overflow: hidden;';
-        $css .= 'min-width:0;';
-        $css .= '}';
-
-        // ------------------------------------------------------------------------------------------------------------- 手机端
-        $css .= '@media (max-width: 320px) {';
-        $css .= '#' . $section->id . ' .' . $class . '-products {';
-        $css .= 'margin-bottom: -' . $section->config->spacingMobile . ';';
-        $css .= '}';
-
-        $css .= '#' . $section->id . ' .' . $class . '-product {';
-        $css .= 'width: 100%;';
-        $css .= 'margin-bottom: ' . $section->config->spacingMobile . ';';
-        $css .= '}';
-        $css .= '}';
-
-        $css .= '@media (min-width: 320px) {';
-
-        $css .= '#' . $section->id . ' .' . $class . '-products {';
-        $css .= 'margin-left: calc(-' . $section->config->spacingMobile . ' / 2);';
-        $css .= 'margin-right: calc(-' . $section->config->spacingMobile . ' / 2);';
-        $css .= 'margin-bottom: -' . $section->config->spacingMobile . ';';
-        $css .= '}';
-
-        $css .= '#' . $section->id . ' .' . $class . '-product {';
-        $css .= 'width: 50%;';
-        $css .= 'padding-left: calc(' . $section->config->spacingMobile . ' / 2);';
-        $css .= 'padding-right: calc(' . $section->config->spacingMobile . ' / 2);';
-        $css .= 'margin-bottom: ' . $section->config->spacingMobile . ';';
-        $css .= '}';
-
-        $css .= '}';
-        // ============================================================================================================= 手机端
-
-
-        // ------------------------------------------------------------------------------------------------------------- 平析端
-        $css .= '@media (min-width: 768px) {';
-
-        $css .= '#' . $section->id . ' .' . $class . '-products {';
-        $css .= 'margin-left: calc(-' . $section->config->spacingTablet . ' / 2);';
-        $css .= 'margin-right: calc(-' . $section->config->spacingTablet . ' / 2);';
-        $css .= 'margin-bottom: -' . $section->config->spacingTablet . ';';
-        $css .= '}';
-
-        $css .= '#' . $section->id . ' .' . $class . '-product {';
-        $css .= 'width: 33.33333333%;';
-        $css .= 'padding-left: calc(' . $section->config->spacingTablet . ' / 2);';
-        $css .= 'padding-right: calc(' . $section->config->spacingTablet . ' / 2);';
-        $css .= 'margin-bottom: ' . $section->config->spacingTablet . ';';
-        $css .= '}';
-
-        $css .= '}';
-        // ============================================================================================================= 平析端
-
-
-
-
-        // ------------------------------------------------------------------------------------------------------------- 电脑端
-        $cols = 5;
+        $itemWidthMobile = '100%';
+        $itemWidthTablet = '50%';
+        $itemWidthDesktop = '33.333333333333%';
+        $itemWidthDesktopXl = '';
+        $itemWidthDesktopXxl = '';
+        $itemWidthDesktopX3l = '';
+        $cols = 4;
         if (isset($section->config->cols)) {
             $cols = $section->config->cols;
         }
-
         if ($cols >= 4) {
-            $css .= '@media (min-width: 992px) {';
-
-            $css .= '#' . $section->id . ' .' . $class . '-products {';
-            $css .= 'margin-left: calc(-' . $section->config->spacingDesktop . ' / 2);';
-            $css .= 'margin-right: calc(-' . $section->config->spacingDesktop . ' / 2);';
-            $css .= 'margin-bottom: -' . $section->config->spacingDesktop . ';';
-            $css .= '}';
-
-            $css .= '#' . $section->id . ' .' . $class . '-product {';
-            $css .= 'width: 25%;';
-            $css .= 'padding-left: calc(' . $section->config->spacingDesktop . ' / 2);';
-            $css .= 'padding-right: calc(' . $section->config->spacingDesktop . ' / 2);';
-            $css .= 'margin-bottom: ' . $section->config->spacingDesktop . ';';
-            $css .= '}';
-
-            $css .= '}';
+            $itemWidthDesktopXl = '25%';
         }
-
-
         if ($cols >= 5) {
-            $css .= '@media (min-width: 1200px) {';
-            $css .= '#' . $section->id . ' .' . $class . '-product {';
-            $css .= 'width: 20%;';
-            $css .= '}';
-            $css .= '}';
+            $itemWidthDesktopXxl = '20%';
         }
-
         if ($cols >= 6) {
-            $css .= '@media (min-width: 1200px) {';
-            $css .= '#' . $section->id . ' .' . $class . '-product {';
-            $css .= 'width: 16.66666666%;';
-            $css .= '}';
-            $css .= '}';
+            $itemWidthDesktopX3l = '16.666666666666%';
         }
-        // ============================================================================================================= 电脑端
-
-
-        $css .= '#' . $section->id . ' .' . $class . '-product:hover {';
-
-
-        $css .= '}';
+        $css .= $section->getCssSpacing($class . '-products', $class . '-product', $itemWidthMobile, $itemWidthTablet, $itemWidthDesktop, $itemWidthDesktopXl, $itemWidthDesktopXxl, $itemWidthDesktopX3l);
 
 
         $css .= '#' . $section->id . ' .' . $class . '-product-image {';
@@ -570,25 +487,23 @@ class ShopSection
     {
         $configStore = Be::getConfig('App.Shop.Store');
         $isMobile = \Be\Be::getRequest()->isMobile();
+        $nnImage = Be::getProperty('App.Shop')->getWwwUrl() . '/images/product/no-image.jpg';
+
         $html = '<div class="' . $class . '-products">';
         foreach ($products as $product) {
             $defaultImage = null;
             foreach ($product->images as $image) {
                 if ($image->is_main) {
-                    $defaultImage = $image;
+                    $defaultImage = $image->url;
                 }
             }
 
             if (!$defaultImage && count($product->images) > 0) {
-                $defaultImage = $product->images[0];
+                $defaultImage = $product->images[0]->url;
             }
 
             if (!$defaultImage) {
-                $nnImage = Be::getProperty('App.Shop')->getWwwUrl() . '/images/product/no-image.jpg';
-                $defaultImage = (object)[
-                    'url' => $nnImage,
-                    'is_main' => 1,
-                ];
+                $defaultImage = $nnImage;
             }
 
             $html .= '<div class="' . $class . '-product">';
@@ -600,7 +515,7 @@ class ShopSection
             }
             $html .= '>';
 
-            $html .= '<img src="' . $defaultImage->url . '" alt="' . htmlspecialchars($product->name) . '">';
+            $html .= '<img src="' . $defaultImage . '" alt="' . htmlspecialchars($product->name) . '">';
 
             $html .= '</a>';
 

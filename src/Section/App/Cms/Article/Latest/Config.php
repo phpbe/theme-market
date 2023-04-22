@@ -21,13 +21,21 @@ class Config
     public string $backgroundColor = '';
 
     /**
-     * @BeConfigItem("分页太小?",,
+     * @BeConfigItem("分页太小",,
      *     description = "分页为0时取系统配置",
      *     driver = "FormItemSlider",
      *     ui="return [':min' => 0, ':max' => 100];"
      * )
      */
     public int $pageSize = 10;
+
+    /**
+     * @BeConfigItem("最大分页",
+     *     description = "为节约服务器资源，限制分页展示时的最大页码数",
+     *     driver = "FormItemInputNumberInt",
+     * )
+     */
+    public int $maxPages = 100;
 
     /**
      * @BeConfigItem("展示多少列?",

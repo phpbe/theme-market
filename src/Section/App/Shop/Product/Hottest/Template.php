@@ -8,7 +8,7 @@ use Be\Theme\Section;
 class Template extends Section
 {
 
-    public array $positions = ['middle', 'west', 'center', 'east'];
+    public array $positions = ['middle', 'center'];
 
     public function display()
     {
@@ -32,7 +32,7 @@ class Template extends Section
 
         $result = Be::getService('App.Shop.Product')->search('', $params);
 
-        echo Be::getService('Theme.Market.ShopSection')->makePagedProductsSection($this, 'app-shop-product-latest', $result);
+        echo Be::getService('Theme.Market.ShopSection')->makePagedProductsSection($this, 'app-shop-product-hottest', $result);
 
     }
 

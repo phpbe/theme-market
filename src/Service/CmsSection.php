@@ -395,6 +395,16 @@ class CmsSection
         $total = $result['total'];
         $pageSize = $result['pageSize'];
         $pages = ceil($total / $pageSize);
+
+        if (isset($section->config->maxPages) && $section->config->maxPages > 0) {
+            $maxPages = $section->config->maxPages;
+        } else {
+            $maxPages = floor(10000 / $pageSize);
+        }
+        if ($pages > $maxPages) {
+            $pages = $maxPages;
+        }
+
         if ($pages > 1) {
 
             $page = $result['page'];

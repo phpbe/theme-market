@@ -36,7 +36,7 @@ class latest
      *     driver = "FormItemInput"
      * )
      */
-    public string $title = 'Latest products';
+    public string $title = 'Latest Products';
 
     /**
      * @BeConfigItem("Meta描述",
@@ -44,7 +44,7 @@ class latest
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaDescription = 'Latest products';
+    public string $metaDescription = 'Latest Products';
 
     /**
      * @BeConfigItem("Meta关键词",
@@ -52,7 +52,7 @@ class latest
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaKeywords = 'Latest products';
+    public string $metaKeywords = 'Latest Products';
 
     /**
      * @BeConfigItem("页面标题",

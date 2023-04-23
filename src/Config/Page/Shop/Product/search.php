@@ -24,7 +24,7 @@ class search
      *     driver = "FormItemInput"
      * )
      */
-    public string $title = 'Search result';
+    public string $title = 'Search Result';
 
     /**
      * @BeConfigItem("Meta描述",
@@ -32,7 +32,7 @@ class search
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaDescription = 'Search result';
+    public string $metaDescription = 'Search Result';
 
     /**
      * @BeConfigItem("Meta关键词",
@@ -40,7 +40,7 @@ class search
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaKeywords = 'Search result';
+    public string $metaKeywords = 'Search Result';
 
     /**
      * @BeConfigItem("页面标题",

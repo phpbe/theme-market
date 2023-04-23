@@ -36,7 +36,7 @@ class hottest
      *     driver = "FormItemInput"
      * )
      */
-    public string $title = 'Hottest products';
+    public string $title = 'Hottest Products';
 
     /**
      * @BeConfigItem("Meta描述",
@@ -44,7 +44,7 @@ class hottest
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaDescription = 'Hottest products';
+    public string $metaDescription = 'Hottest Products';
 
     /**
      * @BeConfigItem("Meta关键词",
@@ -52,7 +52,7 @@ class hottest
      *     driver = "FormItemInput"
      * )
      */
-    public string $metaKeywords = 'Hottest products';
+    public string $metaKeywords = 'Hottest Products';
 
     /**
      * @BeConfigItem("页面标题",

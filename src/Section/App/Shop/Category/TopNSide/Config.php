@@ -3,7 +3,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Category\TopNSide;
 
 /**
- * @BeConfig("店熵商城-分类TopN边栏", icon="bi-search", ordering="10203")
+ * @BeConfig("店熵商城-分类TopN边栏", icon="bi-folder2", ordering="1002003")
  */
 class Config
 {

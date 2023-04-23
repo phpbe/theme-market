@@ -37,7 +37,7 @@ class Template extends Section
             }
         }
 
-        if ($menuItem === false) {
+        if (count($subMenuItems) === 0) {
             foreach ($categoryMenuTree as $item) {
                 if (isset($item->subItems) && is_array($item->subItems) && count($item->subItems) > 0) {
                     foreach ($item->subItems as $subItem) {
@@ -51,10 +51,6 @@ class Template extends Section
             }
         }
 
-        if ($menuItem === false) {
-            return;
-        }
-
         if (count($subMenuItems) === 0) {
             $subMenuItems = $categoryMenuTree;
         }
@@ -64,7 +60,7 @@ class Template extends Section
         echo '<div class="app-shop-category-sub-menu-side">';
 
         if ($this->config->title === '') {
-            $title = $menuItem->label;
+            $title = $menuItem ? $menuItem->label : 'Categories';
         } else {
             $title = $this->config->title;
         }

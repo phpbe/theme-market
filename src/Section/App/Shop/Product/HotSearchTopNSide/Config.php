@@ -1,11 +1,13 @@
 <?php
-namespace Be\Theme\Market\Section\App\Shop\Product\Detail\Main;
+
+namespace Be\Theme\Market\Section\App\Shop\Product\HotSearchTopNSide;
 
 /**
- * @BeConfig("店熵商城-商品详情-主体",  icon="bi-bag-fill", ordering="1001017")
+ * @BeConfig("店熵商城-热搜商品TopN边栏", icon="bi-search-heart", ordering="1001012")
  */
 class Config
 {
+
     /**
      * @BeConfigItem("最新",
      *     driver = "FormItemSwitch")
@@ -13,20 +15,40 @@ class Config
     public int $enable = 1;
 
     /**
-     * @BeConfigItem("宽度",
-     *     description="位于middle时有效",
-     *     driver="FormItemSelect",
-     *     keyValues = "return ['default' => '默认', 'fullWidth' => '全屏'];"
-     * )
-     */
-    public string $width = 'default';
-
-    /**
      * @BeConfigItem("背景颜色",
-     *     driver="FormItemColorPicker"
+     *     driver = "FormItemColorPicker"
      * )
      */
     public string $backgroundColor = '';
+
+    /**
+     * @BeConfigItem("标题",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $title = 'Hot Search';
+
+    /**
+     * @BeConfigItem("展示多少个商品?",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 1, ':max' => 100];"
+     * )
+     */
+    public int $quantity = 12;
+
+    /**
+     * @BeConfigItem("查看更多链接",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $more = 'Show more';
+
+    /**
+     * @BeConfigItem("更多链接",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $moreLink = '';
 
     /**
      * @BeConfigItem("内边距（手机端）",
@@ -53,7 +75,7 @@ class Config
     public string $paddingDesktop = '0';
 
     /**
-     * @BeConfigItem("外边距 （手机端）",
+     * @BeConfigItem("外边距（手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
@@ -61,7 +83,7 @@ class Config
     public string $marginMobile = '1rem 0 0 0';
 
     /**
-     * @BeConfigItem("外边距 （平板端）",
+     * @BeConfigItem("外边距（平板端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
@@ -69,11 +91,12 @@ class Config
     public string $marginTablet = '2rem 0 0 0';
 
     /**
-     * @BeConfigItem("外边距 （电脑端）",
+     * @BeConfigItem("外边距（电脑端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS margin 语法）"
      * )
      */
     public string $marginDesktop = '3rem 0 0 0';
+
 
 }

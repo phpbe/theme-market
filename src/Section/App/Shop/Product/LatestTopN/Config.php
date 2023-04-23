@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Product\LatestTopN;
 
 /**
- * @BeConfig("店熵商城-最新商品TopN", icon="bi-star", ordering="10105")
+ * @BeConfig("店熵商城-最新商品TopN", icon="bi-bag-plus", ordering="1001002")
  */
 class Config
 {
@@ -33,7 +33,7 @@ class Config
      *     driver = "FormItemInput"
      * )
      */
-    public string $title = 'Featured Products';
+    public string $title = 'New Arrivals';
 
     /**
      * @BeConfigItem("展示多少个商品?",

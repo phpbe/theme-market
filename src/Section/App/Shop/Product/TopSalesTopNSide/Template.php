@@ -16,7 +16,7 @@ class Template extends Section
             return;
         }
 
-        $products = Be::getService('App.Shop.Product')->getTopSalesProducts($this->config->quantity);
+        $products = Be::getService('App.Shop.Product')->getTopSalesTopNProducts($this->config->quantity);
         if (count($products) === 0) {
             return;
         }

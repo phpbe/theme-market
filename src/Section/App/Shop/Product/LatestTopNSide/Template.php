@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\App\Shop\Product\LatestTopN;
+namespace Be\Theme\Market\Section\App\Shop\Product\LatestTopNSide;
 
 use Be\Be;
 use Be\Theme\Section;
@@ -8,7 +8,7 @@ use Be\Theme\Section;
 class Template extends Section
 {
 
-    public array $positions = ['middle', 'center'];
+    public array $positions = ['west', 'east'];
 
     public function display()
     {
@@ -22,7 +22,7 @@ class Template extends Section
         }
 
         $defaultMoreLink = beUrl('Shop.Product.latest');
-        echo Be::getService('Theme.Market.ShopSection')->makeProductsSection($this, 'app-shop-product-latest-top-n', $products, $defaultMoreLink);
+        echo Be::getService('Theme.Market.ShopSection')->makeSideProductsSection($this, 'app-shop-product-latest-top-n-side', $products, $defaultMoreLink);
     }
 
 }

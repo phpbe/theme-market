@@ -1,11 +1,13 @@
 <?php
-namespace Be\Theme\Market\Section\App\Shop\Category\Products;
+
+namespace Be\Theme\Market\Section\App\Shop\Product\GuessYouLike;
 
 /**
- * @BeConfig("店熵商城-分类商品列表", icon="bi-folder2", ordering="1002001")
+ * @BeConfig("店熵商城-猜你喜欢商品列表", icon="bi-bag-heart-fill", ordering="1001013")
  */
 class Config
 {
+
     /**
      * @BeConfigItem("最新",
      *     driver = "FormItemSwitch")
@@ -29,13 +31,21 @@ class Config
     public string $backgroundColor = '';
 
     /**
-     * @BeConfigItem("分页太小?",,
+     * @BeConfigItem("分页太小",,
      *     description = "分页为0时取系统配置",
      *     driver = "FormItemSlider",
      *     ui="return [':min' => 0, ':max' => 100];"
      * )
      */
     public int $pageSize = 48;
+
+    /**
+     * @BeConfigItem("最大分页",
+     *     description = "为节约服务器资源，限制分页展示时的最大页码数",
+     *     driver = "FormItemInputNumberInt",
+     * )
+     */
+    public int $maxPages = 100;
 
     /**
      * @BeConfigItem("展示多少列?",
@@ -45,6 +55,14 @@ class Config
      * )
      */
     public int $cols = 4;
+
+    /**
+     * @BeConfigItem("鼠标悬停效果",
+     *     driver = "FormItemSelect",
+     *     keyValues = "return ['none' => '无', 'scale' => '放大', 'rotateScale' => '旋转放大', 'toggleImage' => '切换图片'];"
+     * )
+     */
+    public string $hoverEffect = 'toggleImage';
 
     /**
      * @BeConfigItem("内边距 （手机端）",
@@ -114,5 +132,6 @@ class Config
      * )
      */
     public string $spacingDesktop = '2rem';
+
 
 }

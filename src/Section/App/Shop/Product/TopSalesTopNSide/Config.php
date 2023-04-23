@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Product\TopSalesTopNSide;
 
 /**
- * @BeConfig("店熵商城-边栏热销商品", icon="bi-star", ordering="10109")
+ * @BeConfig("店熵商城-边栏热销商品", icon="bi-bag-check", ordering="1001009")
  */
 class Config
 {
@@ -11,15 +11,6 @@ class Config
      *     driver = "FormItemSwitch")
      */
     public int $enable = 1;
-
-    /**
-     * @BeConfigItem("宽度",
-     *     description="位于middle时有效",
-     *     driver="FormItemSelect",
-     *     keyValues = "return ['default' => '默认', 'fullWidth' => '全屏'];"
-     * )
-     */
-    public string $width = 'default';
 
     /**
      * @BeConfigItem("背景颜色",
@@ -41,16 +32,7 @@ class Config
      *     ui="return [':min' => 1, ':max' => 100];"
      * )
      */
-    public int $quantity = 5;
-
-    /**
-     * @BeConfigItem("展示多少列?",
-     *     description = "仅对电脑端有效",
-     *     driver = "FormItemSlider",
-     *     ui="return [':min' => 3, ':max' => 6];"
-     * )
-     */
-    public int $cols = 5;
+    public int $quantity = 12;
 
     /**
      * @BeConfigItem("内边距（手机端）",

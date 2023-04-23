@@ -14,10 +14,16 @@ class detail
             'name' => 'Theme.Market.App.Shop.Product.Detail.Main',
         ],
         [
+            'name' => 'Theme.Market.App.Shop.Product.Detail.SimilarTopN',
+        ],
+        [
             'name' => 'Theme.Market.App.Shop.Product.Detail.Description',
         ],
         [
             'name' => 'Theme.Market.App.Shop.Product.Detail.Reviews',
+        ],
+        [
+            'name' => 'Theme.Market.App.Shop.Product.GuessYouLikeTopN',
         ],
     ];
 

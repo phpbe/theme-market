@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Product\TopSales;
 
 /**
- * @BeConfig("店熵商城-热销商品列表", icon="bi-star", ordering="10107")
+ * @BeConfig("店熵商城-热销商品列表", icon="bi-bag-check-fill", ordering="1001007")
  */
 class Config
 {
@@ -11,6 +11,22 @@ class Config
      *     driver = "FormItemSwitch")
      */
     public int $enable = 1;
+
+    /**
+     * @BeConfigItem("宽度",
+     *     description="位于middle时有效",
+     *     driver="FormItemSelect",
+     *     keyValues = "return ['default' => '默认', 'fullWidth' => '全屏'];"
+     * )
+     */
+    public string $width = 'default';
+
+    /**
+     * @BeConfigItem("背景颜色",
+     *     driver="FormItemColorPicker"
+     * )
+     */
+    public string $backgroundColor = '';
 
     /**
      * @BeConfigItem("分页太小",,

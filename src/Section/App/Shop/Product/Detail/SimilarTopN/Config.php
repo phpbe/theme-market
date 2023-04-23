@@ -1,8 +1,9 @@
 <?php
-namespace Be\Theme\Market\Section\App\Shop\Product\Detail\Main;
+
+namespace Be\Theme\Market\Section\App\Shop\Product\Detail\SimilarTopN;
 
 /**
- * @BeConfig("店熵商城-商品详情-主体",  icon="bi-bag-fill", ordering="1001017")
+ * @BeConfig("店熵商城-商品详情-类似商品TopN  icon="bi-bag", ordering="1001020")
  */
 class Config
 {
@@ -20,6 +21,36 @@ class Config
      * )
      */
     public string $width = 'default';
+
+    /**
+     * @BeConfigItem("评论标题", driver = "FormItemInput")
+     */
+    public string $title = 'Related products';
+
+    /**
+     * @BeConfigItem("展示多少个商品?",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 1, ':max' => 100];"
+     * )
+     */
+    public int $quantity = 6;
+
+    /**
+     * @BeConfigItem("展示多少列?",
+     *     description = "仅对电脑端有效",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 3, ':max' => 6];"
+     * )
+     */
+    public int $cols = 6;
+
+    /**
+     * @BeConfigItem("鼠标悬停效果",
+     *     driver = "FormItemSelect",
+     *     keyValues = "return ['none' => '无', 'scale' => '放大', 'rotateScale' => '旋转放大', 'toggleImage' => '切换图片'];"
+     * )
+     */
+    public string $hoverEffect = 'toggleImage';
 
     /**
      * @BeConfigItem("背景颜色",
@@ -75,5 +106,26 @@ class Config
      * )
      */
     public string $marginDesktop = '3rem 0 0 0';
+
+    /**
+     * @BeConfigItem("间距（手机端）",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $spacingMobile = '1.5rem';
+
+    /**
+     * @BeConfigItem("间距（平板端）",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $spacingTablet = '1.75rem';
+
+    /**
+     * @BeConfigItem("间距（电脑端）",
+     *     driver = "FormItemInput"
+     * )
+     */
+    public string $spacingDesktop = '2rem';
 
 }

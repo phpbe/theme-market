@@ -8,7 +8,7 @@ use Be\Theme\Section;
 class Template extends Section
 {
 
-    public array $positions = ['middle', 'west', 'center', 'east'];
+    public array $positions = ['middle', 'center'];
 
     public function display()
     {
@@ -16,7 +16,7 @@ class Template extends Section
             return;
         }
 
-        $products = Be::getService('App.Shop.Product')->getTopSalesProducts($this->config->quantity);
+        $products = Be::getService('App.Shop.Product')->getTopSalesTopNProducts($this->config->quantity);
         if (count($products) === 0) {
             return;
         }

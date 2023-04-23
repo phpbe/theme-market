@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\App\Shop\Product\TopSales;
+namespace Be\Theme\Market\Section\App\Shop\Product\GuessYouLike;
 
 use Be\Be;
 use Be\Theme\Section;
@@ -21,8 +21,6 @@ class Template extends Section
 
         $page = $request->get('page', 1);
         $params = [
-            'orderBy' => 'sales_volume',
-            'orderByDir' => 'desc',
             'page' => $page,
         ];
 
@@ -30,8 +28,9 @@ class Template extends Section
             $params['pageSize'] = $this->config->pageSize;
         }
 
-        $result = Be::getService('App.Shop.Product')->search('', $params);
-        echo Be::getService('Theme.Market.CmsSection')->makePagedProductsSection($this, 'app-shop-product-top-sales', $result);
+        $result = Be::getService('App.Shop.Product')->getGuessYouLikeProducts($params);
+
+        echo Be::getService('Theme.Market.ShopSection')->makePagedProductsSection($this, 'app-shop-product-guess-you-like', $result);
     }
 
 }

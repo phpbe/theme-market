@@ -1,8 +1,9 @@
 <?php
-namespace Be\Theme\Market\Section\App\Shop\Product\Detail\Main;
+
+namespace Be\Theme\Market\Section\App\Shop\Product\Detail\SimilarTopNSide;
 
 /**
- * @BeConfig("店熵商城-商品详情-主体",  icon="bi-bag-fill", ordering="1001017")
+ * @BeConfig("店熵商城-商品详情-类似商品TopN边栏  icon="bi-bag", ordering="1001021")
  */
 class Config
 {
@@ -13,20 +14,24 @@ class Config
     public int $enable = 1;
 
     /**
-     * @BeConfigItem("宽度",
-     *     description="位于middle时有效",
-     *     driver="FormItemSelect",
-     *     keyValues = "return ['default' => '默认', 'fullWidth' => '全屏'];"
-     * )
-     */
-    public string $width = 'default';
-
-    /**
      * @BeConfigItem("背景颜色",
      *     driver="FormItemColorPicker"
      * )
      */
     public string $backgroundColor = '';
+
+    /**
+     * @BeConfigItem("评论标题", driver = "FormItemInput")
+     */
+    public string $title = 'Related products';
+
+    /**
+     * @BeConfigItem("展示多少个商品?",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 1, ':max' => 100];"
+     * )
+     */
+    public int $quantity = 6;
 
     /**
      * @BeConfigItem("内边距（手机端）",
@@ -75,5 +80,6 @@ class Config
      * )
      */
     public string $marginDesktop = '3rem 0 0 0';
+
 
 }

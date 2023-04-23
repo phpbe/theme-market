@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Category\MenuSide;
 
 /**
- * @BeConfig("店熵商城-分类菜单边栏", icon="bi-star", ordering="10204")
+ * @BeConfig("店熵商城-分类菜单边栏", icon="bi-folder2", ordering="1002004")
  */
 class Config
 {

@@ -2,7 +2,7 @@
 namespace Be\Theme\Market\Section\App\Shop\Product\Search;
 
 /**
- * @BeConfig("店熵商城-搜索结果", icon="bi-search", ordering="10110")
+ * @BeConfig("店熵商城-搜索结果", icon="bi-search", ordering="1001016")
  */
 class Config
 {
@@ -11,6 +11,22 @@ class Config
      *     driver = "FormItemSwitch")
      */
     public int $enable = 1;
+
+    /**
+     * @BeConfigItem("宽度",
+     *     description="位于middle时有效",
+     *     driver="FormItemSelect",
+     *     keyValues = "return ['default' => '默认', 'fullWidth' => '全屏'];"
+     * )
+     */
+    public string $width = 'default';
+
+    /**
+     * @BeConfigItem("背景颜色",
+     *     driver="FormItemColorPicker"
+     * )
+     */
+    public string $backgroundColor = '';
 
     /**
      * @BeConfigItem("分页太小",,

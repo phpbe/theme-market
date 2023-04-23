@@ -16,6 +16,9 @@ class latest
         [
             'name' => 'Theme.Market.App.Shop.Product.TopSalesTopNSide',
         ],
+        [
+            'name' => 'Theme.Market.App.Shop.Product.GuessYouLikeTopNSide',
+        ],
     ];
 
     public array $centerSections = [

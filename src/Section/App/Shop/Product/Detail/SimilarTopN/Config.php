@@ -25,7 +25,7 @@ class Config
     /**
      * @BeConfigItem("评论标题", driver = "FormItemInput")
      */
-    public string $title = 'Related products';
+    public string $title = 'Related Products';
 
     /**
      * @BeConfigItem("展示多少个商品?",

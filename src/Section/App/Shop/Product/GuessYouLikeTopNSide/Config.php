@@ -26,7 +26,7 @@ class Config
      *     driver = "FormItemInput"
      * )
      */
-    public string $title = 'Guess you like';
+    public string $title = 'Guess You Like';
 
     /**
      * @BeConfigItem("展示多少个商品?",

@@ -32,6 +32,15 @@ class Config
     public int $maxPages = 100;
 
     /**
+     * @BeConfigItem("展示多少列?",
+     *     description = "仅对电脑端有效",
+     *     driver = "FormItemSlider",
+     *     ui="return [':min' => 3, ':max' => 6];"
+     * )
+     */
+    public int $cols = 3;
+
+    /**
      * @BeConfigItem("内边距 （手机端）",
      *     driver = "FormItemInput",
      *     description = "上右下左（CSS padding 语法）"

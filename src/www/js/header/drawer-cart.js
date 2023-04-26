@@ -40,8 +40,10 @@ var DrawerCart = {
 
                             html += '<div class="be-row be-mb-100">';
 
-                            html += '<div class="be-col-auto" style="max-height: 100px; overflow: hidden;">';
-                            html += '<a href="' + product.url + '"><img src="' + product.image + '" alt="' + product.name + '" style="max-width: 100px"></a>';
+                            html += '<div class="be-col-auto">';
+                            html += '<div class="drawer-cart-product-image">';
+                            html += '<a href="' + product.url + '"><img src="' + product.image + '" alt="' + product.name + '"></a>';
+                            html += '</div>';
                             html += '</div>';
 
                             html += '<div class="be-col">';
@@ -70,7 +72,7 @@ var DrawerCart = {
 
                             html += '<div class="be-col-auto">';
                             html += '<div class="be-pl-50">';
-                            html += '<button class="drawer-cart-product-remove-btn" type="button" onclick="DrawerCart.remove(this);"></button>';
+                            html += '<button class="be-fs-200" type="button" onclick="DrawerCart.remove(this);"><i class="bi-x-lg"></i></button>';
                             html += '</div>';
                             html += '</div>';
 

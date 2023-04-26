@@ -496,7 +496,7 @@ class Template extends Section
     private function css()
     {
         $wwwUrl = \Be\Be::getProperty('Theme.Market')->getWwwUrl();
-        echo '<link rel="stylesheet" href="' . $wwwUrl . '/css/header/drawer.css" />';
+        echo '<link rel="stylesheet" href="' . $wwwUrl . '/css/header/drawer.css?v=20230426001" />';
         echo '<style type="text/css">';
         echo $this->getCssBackgroundColor('header');
 
@@ -763,6 +763,13 @@ class Template extends Section
         echo 'text-align: center;';
         echo '}';
 
+
+
+        echo '#drawer-cart .drawer-cart-product-image a {';
+        $configProduct = Be::getConfig('App.Shop.Product');
+        echo  'aspect-ratio: ' . $configProduct->imageAspectRatio . ';';
+        echo  '}';
+
         echo '</style>';
     }
 
@@ -788,7 +795,7 @@ class Template extends Section
         echo 'const DRAWER_CART_CURRENCY = "' . $configStore->currency . '";';
         echo 'const DRAWER_CART_CURRENCY_SYMBOL = "' . $configStore->currencySymbol . '";';
         echo '</script>';
-        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-cart.js?v=20230419001"></script>';
+        echo '<script type="text/javascript" src="' . $wwwUrl . '/js/header/drawer-cart.js?v=20230426001"></script>';
     }
 
 

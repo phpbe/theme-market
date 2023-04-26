@@ -1,6 +1,6 @@
 <?php
 
-namespace Be\Theme\Market\Section\App\Cms\Article\TagsTopNSide;
+namespace Be\Theme\Market\Section\App\Cms\Article\TagTopNSide;
 
 use Be\Be;
 use Be\Theme\Section;
@@ -8,30 +8,30 @@ use Be\Theme\Section;
 class Template extends Section
 {
 
-    public array $positions = ['middle', 'west', 'center', 'east'];
+    public array $positions = ['west', 'east'];
 
 
     private function css()
     {
         echo '<style type="text/css">';
-        echo $this->getCssBackgroundColor('app-cms-article-tags-top-n-side');
-        echo $this->getCssPadding('app-cms-article-tags-top-n-side');
-        echo $this->getCssMargin('app-cms-article-tags-top-n-side');
+        echo $this->getCssBackgroundColor('app-cms-article-tag-top-n-side');
+        echo $this->getCssPadding('app-cms-article-tag-top-n-side');
+        echo $this->getCssMargin('app-cms-article-tag-top-n-side');
 
-        echo '#' . $this->id . ' .app-cms-article-tags-top-n-side-title {';
+        echo '#' . $this->id . ' .app-cms-article-tag-top-n-side-title {';
         echo 'background-color: var(--font-color-9);';
         echo 'padding: 1rem;';
         echo 'font-size: 1.25rem;';
         echo 'font-weight: bold;';
         echo '}';
 
-        echo '#' . $this->id . ' .app-cms-article-tags-top-n-side-body {';
+        echo '#' . $this->id . ' .app-cms-article-tag-top-n-side-body {';
         echo 'border: 1px solid var(--font-color-9);';
         echo 'padding: 1rem;';
         echo 'line-height: 2.5rem;';
         echo '}';
 
-        echo '#' . $this->id . ' .app-cms-article-tags-top-n-side .tag {';
+        echo '#' . $this->id . ' .app-cms-article-tag-top-n-side .tag {';
         echo 'color: #fff;';
         echo 'background-color: var(--major-color);';
         echo 'padding: .5rem 1rem;';
@@ -42,7 +42,7 @@ class Template extends Section
         echo '}';
 
 
-        echo '#' . $this->id . ' .app-cms-article-tags-top-n-side .tag:hover {';
+        echo '#' . $this->id . ' .app-cms-article-tag-top-n-side .tag:hover {';
         echo 'color: #fff;';
         echo 'background-color: var(--major-color2);';
         echo '}';
@@ -63,15 +63,15 @@ class Template extends Section
 
         $this->css();
 
-        echo '<div class="app-cms-article-tags-top-n-side">';
+        echo '<div class="app-cms-article-tag-top-n-side">';
 
         if ($this->config->title !== '') {
-            echo '<div class="app-cms-article-tags-top-n-side-title">';
+            echo '<div class="app-cms-article-tag-top-n-side-title">';
             echo $this->config->title;
             echo '</div>';
         }
 
-        echo '<div class="app-cms-article-tags-top-n-side-body">';
+        echo '<div class="app-cms-article-tag-top-n-side-body">';
         foreach ($topTags as $topTag) {
             echo '<a class="tag" href="'. beUrl('Cms.Article.tag', ['tag' => $topTag]) .'">' . $topTag . '</a> ';
         }

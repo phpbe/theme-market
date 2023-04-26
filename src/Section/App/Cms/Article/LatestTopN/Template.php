@@ -16,7 +16,7 @@ class Template extends Section
             return;
         }
 
-        $articles = Be::getService('App.Cms.Article')->getLatestArticles($this->config->quantity);
+        $articles = Be::getService('App.Cms.Article')->getLatestTopNArticles($this->config->quantity);
         if (count($articles) === 0) {
             return;
         }

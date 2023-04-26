@@ -62,9 +62,11 @@
 
 ### 2xxxxxx CMS相关部件
 * 2001001 - CMS-首页文章列表 - App.Cms.Home
+* 
 * 2002001 - CMS-最新文章列表 - App.Cms.Article.Latter
 * 2002002 - CMS-最新文章TopN - App.Cms.Article.LatterTopN
 * 2002003 - CMS-搜索表单边栏 - App.Cms.Article.SearchFormSide
-* 2002004 - CMS-标签TopN边栏 - App.Cms.Article.TagsTopNSide
+* 2002004 - CMS-标签TopN边栏 - App.Cms.Article.TagTopNSide
+* 
 * 2003001 - CMS-分类文章列表 - App.Cms.Category.Articles
 * 2003002 - CMS-分类TopN边栏 - App.Cms.Category.TopNSide

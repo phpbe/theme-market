@@ -1,5 +1,5 @@
 <?php
-namespace Be\Theme\Market\Section\App\Cms\Article\TagsTopNSide;
+namespace Be\Theme\Market\Section\App\Cms\Article\TagTopNSide;
 
 /**
  * @BeConfig("CMS-标签TopN边栏", icon="bi-search-heart", ordering="20204")

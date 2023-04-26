@@ -16,7 +16,7 @@ class search
             'name' => 'Theme.Market.App.Cms.Category.TopNSide',
         ],
         [
-            'name' => 'Theme.Market.App.Cms.Article.TagsTopNSide',
+            'name' => 'Theme.Market.App.Cms.Article.TagTopNSide',
         ],
     ];
 

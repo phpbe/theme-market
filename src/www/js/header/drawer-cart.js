@@ -72,7 +72,7 @@ var DrawerCart = {
 
                             html += '<div class="be-col-auto">';
                             html += '<div class="be-pl-50">';
-                            html += '<button class="be-fs-200" type="button" onclick="DrawerCart.remove(this);"><i class="bi-x-lg"></i></button>';
+                            html += '<a href="javascript:void(0);" onclick="DrawerCart.remove(this);"><i class="bi-x-lg"></i></a>';
                             html += '</div>';
                             html += '</div>';
 

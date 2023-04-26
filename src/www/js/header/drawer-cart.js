@@ -49,8 +49,8 @@ var DrawerCart = {
                             html += '<div class="be-col">';
                             html += '<div class="be-pl-50">';
                             html += '<div class="be-pb-50" style="min-width: 0;"><a href="' + product.url + '" class="be-d-block be-t-ellipsis-2">' + product.name + '</a></div>';
-                            if (product.style === 2) {
-                                html += '<div class="be-pb-50 be-c-font-6">' + product.item_style + '</div>';
+                            if (product.style !== "") {
+                                html += '<div class="be-pb-50 be-c-font-6">' + product.style + '</div>';
                             }
                             html += '<div class="be-row">';
                             html += '<div class="be-col-auto">';

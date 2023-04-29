@@ -25,6 +25,9 @@ class Template extends Section
         $orderBy = $request->get('order_by', 'common');
         $orderByDir = $request->get('order_by_dir', 'desc');
         $page = $request->get('page', 1);
+        if ($page > $this->config->maxPages) {
+            $page = $this->config->maxPages;
+        }
         $params = [
             'orderBy' => $orderBy,
             'orderByDir' => $orderByDir,

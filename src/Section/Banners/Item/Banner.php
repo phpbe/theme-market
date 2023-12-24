@@ -1,5 +1,5 @@
 <?php
-namespace Be\Theme\Market\Section\Banner\Item;
+namespace Be\Theme\Market\Section\Banners\Item;
 
 /**
  * @BeConfig("横幅", icon="el-icon-picture")

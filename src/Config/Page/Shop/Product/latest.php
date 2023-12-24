@@ -2,6 +2,9 @@
 
 namespace Be\Theme\Market\Config\Page\Shop\Product;
 
+/**
+ * @BeConfig("最新商品")
+ */
 class latest
 {
 

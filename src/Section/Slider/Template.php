@@ -287,9 +287,10 @@ class Template extends Section
                 }
 
                 if ($this->config->autoplay) {
-                    echo 'autoplay: true,';
+                    echo 'autoplay: {';
                     echo 'delay: ' . $this->config->delay . ',';
-                    echo 'speed: ' . $this->config->speed . ',';
+                    echo 'speed: ' . $this->config->speed;
+                    echo '},';
                 }
 
                 if ($this->config->pagination) {

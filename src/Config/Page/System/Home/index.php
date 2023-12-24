@@ -2,6 +2,9 @@
 
 namespace Be\Theme\Market\Config\Page\System\Home;
 
+/**
+ * @BeConfig("首页")
+ */
 class index
 {
 

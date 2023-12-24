@@ -521,7 +521,7 @@ class ShopSection
 
             $html .= '<div class="be-ta-center ' . $class . '-product-image-actions">';
             $html .= '<a href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '" style="transition: all .3s;">';
-            $html .= '<i class="bi-suit-heart-fill"></i>';
+            $html .= '<i class="bi-heart-fill"></i>';
             $html .= '</a>';
 
             $html .= '<a href="' . beUrl('Shop.Product.detail', ['id' => $product->id]) . '" style="transition: all .4s;">';

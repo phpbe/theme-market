@@ -21,8 +21,6 @@
     }
   },
   "require": {
-    "be/be": "*",
-    "be/app-shop": "dev-main",
-    "be/app-cms": "dev-master"
+    "be/be": "~2.7.0"
   }
 }
